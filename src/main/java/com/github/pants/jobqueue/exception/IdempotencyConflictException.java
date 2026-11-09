@@ -1,9 +1,14 @@
 package com.github.pants.jobqueue.exception;
 
+import java.io.Serial;
+
 /**
  * Raised when a caller reuses an idempotency key with different request semantics.
  */
 public class IdempotencyConflictException extends RuntimeException {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /**
      * Creates a new conflict exception.

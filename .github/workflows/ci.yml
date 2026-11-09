@@ -19,3 +19,42 @@ jobs:
           java-version: '25'
       - name: Test
         run: ./gradlew --no-daemon clean test jacocoTestReport
+      - name: Test summary
+        # Also runs when tests fail, so the failures show up on the run's summary page.
+        if: always()
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import glob
+          import xml.etree.ElementTree as ET
+
+          rows, failures = [], []
+          totals = {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
+          for path in sorted(glob.glob("build/test-results/test/*.xml")):
+              suite = ET.parse(path).getroot()
+              counts = {key: int(suite.get(key, 0)) for key in totals}
+              for key in totals:
+                  totals[key] += counts[key]
+              rows.append((suite.get("name").rsplit(".", 1)[-1], counts, float(suite.get("time", 0))))
+              for case in suite.iter("testcase"):
+                  problem = case.find("failure") if case.find("failure") is not None else case.find("error")
+                  if problem is not None:
+                      text = (problem.get("message") or "").strip()
+                      message = text.splitlines()[0][:200] if text else ""
+                      failures.append((suite.get("name").rsplit(".", 1)[-1], case.get("name"), message))
+
+          print("## Test results\n")
+          if not rows:
+              print("No test results were found: the tests did not run.")
+          else:
+              failed = totals["failures"] + totals["errors"]
+              status = "all passed" if failed == 0 else f"{failed} failed"
+              print(f"**{totals['tests']} tests, {status}, {totals['skipped']} skipped**\n")
+              print("| Suite | Tests | Failed | Skipped | Time (s) |")
+              print("| --- | ---: | ---: | ---: | ---: |")
+              for name, counts, seconds in rows:
+                  print(f"| {name} | {counts['tests']} | {counts['failures'] + counts['errors']} | {counts['skipped']} | {seconds:.1f} |")
+              if failures:
+                  print("\n### Failures\n")
+                  for suite_name, test, message in failures:
+                      print(f"- `{suite_name}.{test}`: {message}")
+          EOF

@@ -53,6 +53,16 @@ dependencies {
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    jvmArgs(
+            // Testcontainers reaches Docker through JNA, which loads native code; Java 25 warns unless allowed.
+            '--enable-native-access=ALL-UNNAMED',
+            // Mockito's agent appends to the boot class path, which makes the JVM warn that class-data sharing is limited.
+            '-Xshare:off')
+    // List every test in the build output, so CI logs show what ran.
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+    }
 }
 
 jacocoTestReport {

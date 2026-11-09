@@ -1,11 +1,15 @@
 package com.github.pants.jobqueue.exception;
 
+import java.io.Serial;
 import java.util.UUID;
 
 /**
  * Raised when an operator or API caller references an unknown job id.
  */
 public class JobNotFoundException extends RuntimeException {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /**
      * Creates an exception for the missing job id.
