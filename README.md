@@ -2,7 +2,7 @@
 
 A Java 25 / Spring Boot 4 job queue that accepts jobs over HTTP, stores them in PostgreSQL, and runs them through Kafka priority lanes. Failed jobs move to retry lanes with backoff and then to a dead-letter queue. Duplicate job creation and duplicate business side effects are prevented even though Kafka delivers at least once.
 
-A React dashboard for this service lives next to this repository in [`../job-queue-dashboard`](../job-queue-dashboard). It is a separate project with its own README.
+A React dashboard for this service lives in this repository - [`job-queue-dashboard`](https://github.com/harsh11101/Job-Queue-Dashboard). It is a separate project with its own README.
 
 ## Stack
 
