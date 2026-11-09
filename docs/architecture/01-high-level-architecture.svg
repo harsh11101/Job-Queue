@@ -48,8 +48,9 @@
 <text x="170.0" y="314.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Job queue dashboard</text>
 <text x="170.0" y="334.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">React 19 SPA (Vite)</text>
 <text x="170.0" y="354.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">static host / Vercel</text>
-<text x="170.0" y="600.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Prometheus (optional)</text>
-<text x="170.0" y="617.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">scrapes /actuator/prometheus</text>
+<text x="170.0" y="591.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Prometheus + Grafana</text>
+<text x="170.0" y="609.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">optional, started with</text>
+<text x="170.0" y="626.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">--profile monitoring</text>
 <text x="850.0" y="452.9" font-size="14" fill="#7048e8" text-anchor="start" xml:space="preserve">Service · Spring Boot 4 · Java 25 · virtual threads</text>
 <text x="850.0" y="470.4" font-size="14" fill="#7048e8" text-anchor="start" xml:space="preserve">N identical replicas</text>
 <text x="505.0" y="519.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">REST API</text>
@@ -85,6 +86,7 @@
 <text x="515.0" y="312.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">POST /api/v1/jobs</text>
 <text x="515.0" y="328.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">returns after one DB commit</text>
 <text x="290.0" y="624.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">scrape</text>
+<text x="290.0" y="640.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">every 15 s</text>
 <text x="512.0" y="640.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">INSERT job + outbox row</text>
 <text x="512.0" y="656.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">(one transaction)</text>
 <text x="732.0" y="640.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">claim due rows</text>
@@ -104,7 +106,7 @@
 <text x="98.0" y="821.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Database</text>
 <text x="98.0" y="849.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Kafka topics</text>
 <text x="98.0" y="877.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Redis</text>
-<text x="98.0" y="905.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Optional / not part of this repo (dashed)</text>
+<text x="98.0" y="905.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Optional (dashed): monitoring</text>
 <text x="410.0" y="892.9" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">Coordination between replicas: PostgreSQL row locks (outbox claims) · Kafka consumer groups (partitions) ·</text>
 <text x="410.0" y="910.4" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">Redis leases + fenced end-of-attempt updates (one attempt at a time). Execution is always asynchronous:</text>
 <text x="410.0" y="927.9" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">the API never waits for a job to run.</text>

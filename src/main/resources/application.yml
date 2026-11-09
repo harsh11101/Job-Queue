@@ -58,6 +58,10 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        # Exports latency buckets so Prometheus can compute p95/p99 request times.
+        http.server.requests: true
 
 logging:
   level:

@@ -613,6 +613,17 @@ public class JobStore {
     }
 
     /**
+     * Counts outbox rows not yet confirmed by Kafka (PENDING, FAILED or PUBLISHING).
+     *
+     * @return number of unsent rows.
+     */
+    public long countUnsentOutbox() {
+        return jdbcClient.sql("SELECT COUNT(*) FROM job_outbox WHERE status IN ('PENDING', 'FAILED', 'PUBLISHING')")
+                .query(Long.class)
+                .single();
+    }
+
+    /**
      * Counts jobs by status.
      *
      * @return map of status to count, ordered by status name.

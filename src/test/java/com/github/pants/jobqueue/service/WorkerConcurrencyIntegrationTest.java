@@ -10,6 +10,7 @@ import com.github.pants.jobqueue.messaging.JobQueueMessage;
 import com.github.pants.jobqueue.persistence.JobRecord;
 import com.github.pants.jobqueue.persistence.JobStore;
 import com.github.pants.jobqueue.support.IntegrationTestSupport;
+import io.micrometer.core.instrument.MeterRegistry;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -52,6 +53,29 @@ class WorkerConcurrencyIntegrationTest extends IntegrationTestSupport {
 
     @Autowired
     private ExpiredLeaseRecovery leaseRecovery;
+
+    @Autowired
+    private QueueDepthMetrics queueDepthMetrics;
+
+    @Autowired
+    private MeterRegistry meterRegistry;
+
+    /**
+     * The queue-depth gauges report what is in the database after a refresh; the
+     * never-written ACCEPTED status gets no gauge.
+     */
+    @Test
+    void queueDepthGaugesReportCurrentCounts() {
+        final Instant future = Instant.now().plus(Duration.ofHours(1));
+        insertOutbox(insertJobWithoutOutbox("depth"), "PENDING", future, future);
+
+        queueDepthMetrics.refresh();
+
+        assertThat(meterRegistry.get("jobqueue.jobs.current").tag("status", "QUEUED").gauge().value())
+                .isGreaterThanOrEqualTo(1);
+        assertThat(meterRegistry.get("jobqueue.outbox.unsent").gauge().value()).isGreaterThanOrEqualTo(1);
+        assertThat(meterRegistry.find("jobqueue.jobs.current").tag("status", "ACCEPTED").gauge()).isNull();
+    }
 
     /**
      * The same message delivered many times at once (redelivery storm, consumer

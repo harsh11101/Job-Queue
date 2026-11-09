@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: job-queue
+    folder: Job queue
+    type: file
+    # Edits made in Grafana are kept until the container is recreated. To keep a change,
+    # export the dashboard JSON (Share → Export) over monitoring/grafana/dashboards/job-queue.json.
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/dashboards

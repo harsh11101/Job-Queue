@@ -1,5 +1,6 @@
 package com.github.pants.jobqueue.config;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -17,6 +18,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.MicrometerConsumerListener;
+import org.springframework.kafka.core.MicrometerProducerListener;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 
@@ -66,10 +69,12 @@ public class KafkaConfiguration {
      * Producer factory with Kafka idempotent producer settings enabled.
      *
      * @param properties application queue properties.
+     * @param meterRegistry registry the Kafka client metrics are published to.
      * @return producer factory for string keys and JSON values.
      */
     @Bean
-    public ProducerFactory<String, String> producerFactory(final JobQueueProperties properties) {
+    public ProducerFactory<String, String> producerFactory(
+            final JobQueueProperties properties, final MeterRegistry meterRegistry) {
         final Map<String, Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, properties.getKafka().getBootstrapServers());
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -80,7 +85,10 @@ public class KafkaConfiguration {
         config.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 5);
         config.put(ProducerConfig.LINGER_MS_CONFIG, 5);
         config.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120_000);
-        return new DefaultKafkaProducerFactory<>(config);
+        final DefaultKafkaProducerFactory<String, String> factory = new DefaultKafkaProducerFactory<>(config);
+        // Publishes the Kafka client's own metrics (kafka_producer_*) next to the application's.
+        factory.addListener(new MicrometerProducerListener<>(meterRegistry));
+        return factory;
     }
 
     /**
@@ -98,10 +106,12 @@ public class KafkaConfiguration {
      * Consumer factory shared by all listener containers.
      *
      * @param properties application queue properties.
+     * @param meterRegistry registry the Kafka client metrics are published to.
      * @return consumer factory for string keys and JSON values.
      */
     @Bean
-    public ConsumerFactory<String, String> consumerFactory(final JobQueueProperties properties) {
+    public ConsumerFactory<String, String> consumerFactory(
+            final JobQueueProperties properties, final MeterRegistry meterRegistry) {
         final Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, properties.getKafka().getBootstrapServers());
         config.put(ConsumerConfig.GROUP_ID_CONFIG, properties.getKafka().getConsumerGroupId());
@@ -111,7 +121,10 @@ public class KafkaConfiguration {
         config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         config.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, properties.getKafka().getMaxPollRecords());
         config.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed");
-        return new DefaultKafkaConsumerFactory<>(config);
+        final DefaultKafkaConsumerFactory<String, String> factory = new DefaultKafkaConsumerFactory<>(config);
+        // Publishes the Kafka client's own metrics (kafka_consumer_*), including how far each consumer lags.
+        factory.addListener(new MicrometerConsumerListener<>(meterRegistry));
+        return factory;
     }
 
     /**

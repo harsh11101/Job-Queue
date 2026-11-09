@@ -12,7 +12,7 @@ A React dashboard for this service lives next to this repository in [`../job-que
 | Persistence | PostgreSQL 18 through `JdbcClient` + HikariCP, schema managed by Flyway |
 | Transport | Apache Kafka 4 (KRaft): two priority lanes, three retry lanes, one DLQ |
 | Leases | Redis 8, atomic acquire (`SET NX` with a TTL) and release (Lua compare-and-delete) |
-| Observability | Actuator health probes, Micrometer counters, Prometheus endpoint |
+| Observability | Actuator health probes, Micrometer metrics, Prometheus and Grafana (optional compose profile) |
 | Build and test | Gradle 9.5.1 wrapper, JUnit 5, Testcontainers, JaCoCo |
 
 Blocking code is used everywhere: HTTP requests, `@Scheduled` tasks, Kafka listeners and outbox publishing all run on virtual threads. Waiting on PostgreSQL, Redis or Kafka parks a virtual thread instead of holding a platform thread. The Hikari pool (`DB_POOL_SIZE`, default 32) is the real limit on database concurrency.
@@ -151,11 +151,35 @@ A Postman collection with the same requests, plus checks on status codes, is in 
 npx newman run postman/distributed-job-queue.postman_collection.json --delay-request 2000
 ```
 
-### 4. Stop and reset
+### 4. Monitoring with Prometheus and Grafana (optional)
 
 ```bash
-docker compose --profile app down      # stop, keep data
-docker compose --profile app down -v   # stop and delete PostgreSQL and Redis data
+docker compose --profile monitoring up -d                  # with the service on bootRun
+docker compose --profile app --profile monitoring up -d    # or with the service in Docker too
+```
+
+| Open | What it is |
+| --- | --- |
+| <http://localhost:3000> | Grafana with the **Job queue** dashboard as the home page; no login needed to view (sign in as `admin` / `admin`, or `GRAFANA_ADMIN_PASSWORD`, to edit) |
+| <http://localhost:9090> | Prometheus; *Status → Targets* shows whether the service is being scraped |
+| <http://localhost:8080/actuator/prometheus> | The raw metrics the service exposes |
+
+Prometheus scrapes the service every 15 s at `host.docker.internal:8080`, so it works whichever way the service runs. Both UIs listen on localhost only.
+
+The dashboard has five sections:
+- **Queue right now:** jobs per status and unsent outbox rows, with backlog over time.
+- **Throughput:** created, succeeded, retried, dead-lettered and cancelled per minute; successes per lane; outbox sends; idempotent repeats.
+- **Safety nets and Kafka:** recovered leases, discarded late results and skipped duplicate deliveries; consumer lag per topic.
+- **API:** requests per second by status and p95 latency per endpoint.
+- **Runtime:** JVM heap, database pool and CPU.
+
+Rates need two scrapes, so per-minute panels fill in about 30 s after traffic starts, and Kafka lag per topic appears about a minute after the service starts. The dashboard is provisioned from [`monitoring/grafana/dashboards/job-queue.json`](monitoring/grafana/dashboards/job-queue.json). Changes made in Grafana are lost when the container is recreated; export the JSON (*Share → Export*) over that file to keep them.
+
+### 5. Stop and reset
+
+```bash
+docker compose --profile app --profile monitoring down      # stop, keep data
+docker compose --profile app --profile monitoring down -v   # stop and delete all stored data (PostgreSQL, Redis, Prometheus, Grafana)
 ```
 
 ## Testing
@@ -284,5 +308,6 @@ src/main/java/com/github/pants/jobqueue/
 src/main/resources/db/migration/   Flyway schema
 docs/                              architecture notes and runbook
 docs/architecture/                 design diagrams (.excalidraw sources + exported .svg)
+monitoring/                        Prometheus scrape config, Grafana provisioning and dashboard
 postman/                           Postman collection
 ```

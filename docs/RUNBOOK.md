@@ -12,7 +12,17 @@ The dashboard polls `/actuator/health` and shows **Backend up** / **Backend unre
 
 ## Metrics
 
-Exposed at `/actuator/prometheus`, all tagged with `application`. A counter appears only after it is first incremented.
+Exposed at `/actuator/prometheus`, all tagged with `application`. A counter appears only after it is first incremented. Locally, `docker compose --profile monitoring up -d` starts Prometheus and Grafana with a ready-made dashboard (see the README).
+
+**How much work is in the queue now** (gauges, refreshed from PostgreSQL every 15 s; every replica reports the same database-wide value, so aggregate with `max`):
+
+| Metric | Tags | Meaning |
+| --- | --- | --- |
+| `jobqueue_jobs_current` | `status` | Jobs in each status right now |
+| `jobqueue_outbox_unsent` | | Outbox rows not yet confirmed by Kafka; should stay near zero |
+| `kafka_consumer_fetch_manager_records_lag` | `topic`, `partition` | Messages not yet consumed; sum by `topic` for lag per lane |
+
+**What happened** (counters):
 
 | Metric | Tags | Meaning |
 | --- | --- | --- |
@@ -30,7 +40,9 @@ Exposed at `/actuator/prometheus`, all tagged with `application`. A counter appe
 | `jobqueue_worker_lease_recovered_total` | | Jobs found `PROCESSING` after their lease expired and moved on by the recovery task |
 | `jobqueue_worker_lease_lost_total` | `topic` | A worker finished an attempt that had already been recovered; its result was discarded |
 
-Suggested alerts: any increase of `jobqueue_worker_dlq_total`; a sustained rate of `jobqueue_outbox_publish_failed_total` (Kafka unreachable); any `lease_recovered` (a worker died mid-job, or jobs run longer than the 6-minute lease); any `lease_lost` (jobs run longer than the lease).
+HTTP request timings (`http_server_requests_seconds`) are exported with histogram buckets, so `histogram_quantile` gives p95/p99 per endpoint. JVM, database pool (`hikaricp_*`) and Kafka client (`kafka_producer_*`, `kafka_consumer_*`) metrics are exported too.
+
+Suggested alerts: `jobqueue_jobs_current{status="QUEUED"}` or consumer lag rising for several minutes (workers cannot keep up); `jobqueue_outbox_unsent` above zero for minutes; any increase of `jobqueue_worker_dlq_total`; a sustained rate of `jobqueue_outbox_publish_failed_total` (Kafka unreachable); any `lease_recovered` (a worker died mid-job, or jobs run longer than the 6-minute lease); any `lease_lost` (jobs run longer than the lease).
 
 ## Finding stuck work
 
