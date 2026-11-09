@@ -56,22 +56,22 @@
 <text x="700.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack, skip</text>
 <text x="700.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(another worker</text>
 <text x="700.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">holds the lease)</text>
-<text x="960.0" y="210.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">insert outbox row for</text>
-<text x="960.0" y="227.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">later (not_before), ack</text>
-<text x="1220.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack, skip</text>
-<text x="1220.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(job already</text>
-<text x="1220.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SUCCEEDED / DLQ)</text>
+<text x="960.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack, skip</text>
+<text x="960.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(job SUCCEEDED,</text>
+<text x="960.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">DLQ or CANCELLED)</text>
+<text x="1220.0" y="210.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">insert outbox row for</text>
+<text x="1220.0" y="227.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">later (not_before), ack</text>
 <text x="180.0" y="370.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Message</text>
 <text x="180.0" y="387.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobId · attempt · notBefore</text>
 <text x="440.0" y="370.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Acquire lease</text>
 <text x="440.0" y="387.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Redis SET NX, TTL 6 min</text>
 <text x="700.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Lease</text>
 <text x="700.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">acquired?</text>
-<text x="960.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">notBefore in</text>
-<text x="960.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">the future?</text>
-<text x="1220.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Job already</text>
-<text x="1220.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">finished?</text>
-<text x="1480.0" y="361.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">markProcessing</text>
+<text x="960.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Job finished</text>
+<text x="960.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">or cancelled?</text>
+<text x="1220.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">notBefore in</text>
+<text x="1220.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">the future?</text>
+<text x="1480.0" y="361.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">markProcessing (fenced)</text>
 <text x="1480.0" y="379.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">leased_until = start + 6 min</text>
 <text x="1480.0" y="396.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ attempt row</text>
 <text x="1480.0" y="531.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobExecutor</text>
@@ -90,8 +90,9 @@
 <text x="960.0" y="681.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Release lease (Lua</text>
 <text x="960.0" y="699.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">compare-and-delete),</text>
 <text x="960.0" y="716.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">then ack</text>
-<text x="310.0" y="540.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Fenced update matched 0 rows? The attempt was already ended</text>
-<text x="310.0" y="557.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">by lease recovery: result discarded (lease.lost metric), ack.</text>
+<text x="310.0" y="532.6" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">A fenced update matched 0 rows → ack, skip:</text>
+<text x="310.0" y="548.8" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">• at the start: the job was cancelled meanwhile, or the message is stale</text>
+<text x="310.0" y="565.1" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">• at the end: lease recovery already ended the attempt (result discarded)</text>
 <text x="310.0" y="690.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Exception before the final commit → nack(5 s):</text>
 <text x="310.0" y="707.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Kafka redelivers; the receipt prevents a second effect.</text>
 <text x="817.1" y="366.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>

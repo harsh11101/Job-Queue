@@ -295,21 +295,30 @@ public class JobStore {
     }
 
     /**
-     * Marks a job as processing and records worker lease metadata.
+     * Starts an attempt: marks the job as processing and records worker lease metadata,
+     * if the job may still run this attempt.
+     *
+     * <p>This is the fence between running and cancelling. It matches a job waiting for
+     * this attempt ({@code QUEUED} or {@code RETRY_SCHEDULED} at a lower attempt number)
+     * or one already {@code PROCESSING} this same attempt (a redelivery after a transient
+     * error; the caller holds the lease). A cancel commits through the same row, so either
+     * the cancel or the start wins, never both. Stale messages for an attempt that has
+     * already been ended do not match either.</p>
      *
      * @param jobId job id.
      * @param attempt attempt number.
      * @param workerId worker instance id.
      * @param now timestamp.
      * @param leasedUntil lease expiry timestamp.
+     * @return true when the attempt started, false when the job may not run it.
      */
-    public void markProcessing(
+    public boolean markProcessing(
             final UUID jobId,
             final int attempt,
             final String workerId,
             final Instant now,
             final Instant leasedUntil) {
-        jdbcClient.sql("""
+        return jdbcClient.sql("""
                         UPDATE jobs
                         SET status = :status,
                             attempt = :attempt,
@@ -318,7 +327,9 @@ public class JobStore {
                             worker_id = :workerId,
                             updated_at = :now,
                             version = version + 1
-                        WHERE id = :jobId AND status <> 'SUCCEEDED'
+                        WHERE id = :jobId
+                          AND ((status IN ('QUEUED', 'RETRY_SCHEDULED') AND attempt < :attempt)
+                               OR (status = 'PROCESSING' AND attempt = :attempt))
                         """)
                 .param("jobId", jobId)
                 .param("status", JobStatus.PROCESSING.name())
@@ -326,6 +337,55 @@ public class JobStore {
                 .param("workerId", workerId)
                 .param("now", toOffset(now))
                 .param("leasedUntil", toOffset(leasedUntil))
+                .update() > 0;
+    }
+
+    /**
+     * Cancels a job that is waiting to run or sits in DLQ.
+     *
+     * <p>Fenced on the status: a job that a worker has already started (PROCESSING), or
+     * that has finished, does not match. Concurrent cancels are serialized by the row lock
+     * and only the first one matches.</p>
+     *
+     * @param jobId job id.
+     * @param now timestamp.
+     * @return true when this call cancelled the job.
+     */
+    public boolean cancelJob(final UUID jobId, final Instant now) {
+        return jdbcClient.sql("""
+                        UPDATE jobs
+                        SET status = :status,
+                            next_retry_at = NULL,
+                            leased_until = NULL,
+                            worker_id = NULL,
+                            completed_at = :now,
+                            updated_at = :now,
+                            version = version + 1
+                        WHERE id = :jobId AND status IN ('QUEUED', 'RETRY_SCHEDULED', 'DLQ')
+                        """)
+                .param("jobId", jobId)
+                .param("status", JobStatus.CANCELLED.name())
+                .param("now", toOffset(now))
+                .update() > 0;
+    }
+
+    /**
+     * Withdraws a cancelled job's outbox rows that have not been sent yet, so they are never
+     * published. Rows already being sent cannot be recalled; workers skip their messages.
+     *
+     * @param jobId job id.
+     * @param now timestamp.
+     * @return number of rows withdrawn.
+     */
+    public int cancelUnsentOutbox(final UUID jobId, final Instant now) {
+        return jdbcClient.sql("""
+                        UPDATE job_outbox
+                        SET status = :status, updated_at = :now
+                        WHERE job_id = :jobId AND status IN ('PENDING', 'FAILED')
+                        """)
+                .param("jobId", jobId)
+                .param("status", OutboxStatus.CANCELLED.name())
+                .param("now", toOffset(now))
                 .update();
     }
 

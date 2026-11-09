@@ -23,7 +23,9 @@ Exposed at `/actuator/prometheus`, all tagged with `application`. A counter appe
 | `jobqueue_worker_retry_scheduled_total` | `topic` | Failures with a retry scheduled |
 | `jobqueue_worker_dlq_total` | `topic` | Jobs moved to the dead-letter queue |
 | `jobqueue_worker_lock_skipped_total` | `topic` | Messages skipped because another worker held the lease |
-| `jobqueue_worker_terminal_skipped_total` | `status` | Redeliveries for jobs already finished |
+| `jobqueue_jobs_cancelled_total` | | Jobs cancelled through the API |
+| `jobqueue_worker_terminal_skipped_total` | `status` | Messages for jobs already finished or cancelled |
+| `jobqueue_worker_start_skipped_total` | `topic` | Messages that could not start their attempt: the job was cancelled after the worker read it, or the message was stale |
 | `jobqueue_worker_early_rescheduled_total` | `topic` | Retry messages that arrived before their due time |
 | `jobqueue_worker_lease_recovered_total` | | Jobs found `PROCESSING` after their lease expired and moved on by the recovery task |
 | `jobqueue_worker_lease_lost_total` | `topic` | A worker finished an attempt that had already been recovered; its result was discarded |
@@ -56,12 +58,27 @@ A job is therefore moving again within about `lock-ttl` + 30 s of its worker dyi
 
 Ending an attempt is fenced: the update applies only while the job is still `PROCESSING` at that attempt number. If the original worker was only slow rather than dead, its later result is discarded (`jobqueue_worker_lease_lost_total`) and cannot overwrite the job. The retry then finds the side-effect receipt and does not repeat the effect. Replicas need no coordination, because only one party can end a given attempt.
 
+## Cancelling a job
+
+`POST /api/v1/jobs/{id}/cancel`, or **Cancel job** on the job's page in the dashboard.
+
+| Job status | Result |
+| --- | --- |
+| `QUEUED`, `RETRY_SCHEDULED`, `DLQ` | `200`, job becomes `CANCELLED` |
+| `CANCELLED` | `200`, unchanged (safe to repeat) |
+| `PROCESSING`, `SUCCEEDED` | `409 INVALID_JOB_STATE` |
+
+`CANCELLED` is final: the job never runs again, and replay returns `409`. In the same transaction the job's unsent outbox rows are marked `CANCELLED`, so they are never published. A message already on Kafka is skipped when it arrives.
+
+Cancel and a worker starting the job update the same row, so exactly one wins. If the worker starts first, the cancel is refused with `409`; wait for the attempt to end and cancel again if the job is then retrying or in DLQ. A running job cannot be stopped mid-attempt, and cancelling never undoes an effect that already happened: if `side_effect_receipts` has a row for the job, its effect is done.
+
 ## DLQ handling
 
 1. Find DLQ jobs: dashboard **Jobs** page filtered by *Dead letter*, or `GET /api/v1/jobs?status=DLQ`.
 2. Read the cause: `GET /api/v1/jobs/{id}` (`errorMessage`, `failureClass`) and `GET /api/v1/jobs/{id}/attempts`.
 3. Fix the cause: a downstream dependency, or a bad payload. Payloads cannot be edited; a bad payload needs a new job with a new idempotency key.
 4. Replay: `POST /api/v1/jobs/{id}/replay` with `{"priority": "HIGH"}` or `{}` (LOW), or **Replay job** on the job's page.
+   Or, if the job should never run again, cancel it (see above); a cancelled job cannot be replayed.
 
 Replay runs **one** more attempt. The attempt counter keeps counting, so if that attempt fails the job goes straight back to DLQ instead of starting a new retry chain. Replay is safe if the original effect already happened: the side-effect receipt key is unique, so the effect is not repeated. Replaying a job that is not in DLQ returns `409 INVALID_JOB_STATE`.
 

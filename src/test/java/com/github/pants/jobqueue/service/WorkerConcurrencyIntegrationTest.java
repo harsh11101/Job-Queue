@@ -1,9 +1,11 @@
 package com.github.pants.jobqueue.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.awaitility.Awaitility.await;
 
 import com.github.pants.jobqueue.domain.JobExecutionResult;
+import com.github.pants.jobqueue.exception.InvalidJobStateException;
 import com.github.pants.jobqueue.messaging.JobQueueMessage;
 import com.github.pants.jobqueue.persistence.JobRecord;
 import com.github.pants.jobqueue.persistence.JobStore;
@@ -252,6 +254,73 @@ class WorkerConcurrencyIntegrationTest extends IntegrationTestSupport {
 
         assertThat(statusOf(jobId)).isEqualTo("PROCESSING");
         assertThat(jobStore.markSucceeded(jobId, 1, "{}", Instant.now())).isTrue();
+    }
+
+    /**
+     * A cancelled job's unsent outbox rows are withdrawn, and a message already on Kafka
+     * never runs it: no attempt, no side effect.
+     */
+    @Test
+    void cancelledJobIsNeverRun() throws Exception {
+        final Instant future = Instant.now().plus(Duration.ofHours(1));
+        final UUID jobId = insertJobWithoutOutbox("cancel-queued");
+        final UUID outboxId = insertOutbox(jobId, "PENDING", future, future);
+        final JobRecord job = jobStore.findJobById(jobId).orElseThrow();
+
+        assertThat(jobCommandService.cancel(jobId).status()).isEqualTo("CANCELLED");
+        workerService.process(objectMapper.writeValueAsString(
+                new JobQueueMessage(jobId, job.idempotencyKey(), 1, Instant.now(), job.traceId())), "jobs-low");
+
+        assertThat(statusOf(jobId)).isEqualTo("CANCELLED");
+        assertThat(jdbcClient.sql("SELECT status FROM job_outbox WHERE id = :id")
+                .param("id", outboxId).query(String.class).single()).isEqualTo("CANCELLED");
+        assertThat(jdbcClient.sql("SELECT COUNT(*) FROM job_attempts WHERE job_id = :id")
+                .param("id", jobId).query(Long.class).single()).isZero();
+        assertThat(jdbcClient.sql("SELECT COUNT(*) FROM side_effect_receipts WHERE job_id = :id")
+                .param("id", jobId).query(Long.class).single()).isZero();
+    }
+
+    /**
+     * A job a worker is running cannot be cancelled.
+     */
+    @Test
+    void processingJobCannotBeCancelled() {
+        final UUID jobId = insertStrandedJob("cancel-running", 4, Instant.now().plus(Duration.ofMinutes(5)));
+
+        assertThatThrownBy(() -> jobCommandService.cancel(jobId)).isInstanceOf(InvalidJobStateException.class);
+        assertThat(statusOf(jobId)).isEqualTo("PROCESSING");
+    }
+
+    /**
+     * Cancel and start-of-attempt contend for the same row: whichever commits first wins.
+     */
+    @Test
+    void cancelAndStartAreMutuallyExclusive() {
+        final Instant now = Instant.now();
+        final Instant lease = now.plus(Duration.ofMinutes(6));
+
+        final UUID cancelledFirst = insertJobWithoutOutbox("cancel-first");
+        assertThat(jobStore.cancelJob(cancelledFirst, now)).isTrue();
+        assertThat(jobStore.markProcessing(cancelledFirst, 1, "worker", now, lease)).isFalse();
+
+        final UUID startedFirst = insertJobWithoutOutbox("start-first");
+        assertThat(jobStore.markProcessing(startedFirst, 1, "worker", now, lease)).isTrue();
+        assertThat(jobStore.cancelJob(startedFirst, now)).isFalse();
+    }
+
+    /**
+     * A redelivered message for an attempt that has already ended cannot restart it; the
+     * message for the next attempt can.
+     */
+    @Test
+    void staleMessageCannotRestartAnEndedAttempt() {
+        final UUID jobId = insertStrandedJob("stale", 4, Instant.now().minusSeconds(1));
+        leaseRecovery.recoverExpiredLeases();
+        final Instant now = Instant.now();
+        final Instant lease = now.plus(Duration.ofMinutes(6));
+
+        assertThat(jobStore.markProcessing(jobId, 1, "worker", now, lease)).isFalse();
+        assertThat(jobStore.markProcessing(jobId, 2, "worker", now, lease)).isTrue();
     }
 
     /**

@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Distributed Priority Job Queue",
-    "description": "Distributed Priority Job Queue API. Run the folder in order: each create request stores the new job id in the `jobId` variable for the requests after it. 'Replay DLQ job' replays the permanent-failure job, so give it a second or two (Runner delay of 2000 ms) after that create. Re-running gives 200 instead of 201 for the fixed idempotency keys, and replay returns 409 once the job is no longer in DLQ.",
+    "description": "Distributed Priority Job Queue API. Run the folder in order: each create request stores the new job id in the `jobId` variable for the requests after it. 'Replay DLQ job' replays the permanent-failure job, so give it a second or two (Runner delay of 2000 ms) after that create. Re-running gives 200 instead of 201 for the fixed idempotency keys, and replay returns 409 once the job is no longer in DLQ. 'Cancel job' then cancels that job and 'Replay cancelled job' checks that a cancelled job cannot be replayed.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -265,7 +265,7 @@
         "url": "{{baseUrl}}/api/v1/jobs",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"idempotencyKey\": \"permanent-demo-0001\",\n  \"type\": \"PERMANENT_DEMO\",\n  \"priority\": \"LOW\",\n  \"payload\": {\"simulatePermanentFailure\": true},\n  \"maxAttempts\": 4\n}"
+          "raw": "{\n  \"idempotencyKey\": \"permanent-demo-{{$timestamp}}\",\n  \"type\": \"PERMANENT_DEMO\",\n  \"priority\": \"LOW\",\n  \"payload\": {\"simulatePermanentFailure\": true},\n  \"maxAttempts\": 4\n}"
         }
       },
       "event": [
@@ -311,6 +311,56 @@
           }
         }
       ]
+    },
+    {
+      "name": "Cancel job",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Cancels the job replayed above (QUEUED, or back in DLQ). Cancelling is final.",
+              "pm.test(\"status is 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"now CANCELLED\", () => pm.expect(pm.response.json().status).to.eql(\"CANCELLED\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/api/v1/jobs/{{jobId}}/cancel"
+      }
+    },
+    {
+      "name": "Replay cancelled job - 409",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 409\", () => pm.response.to.have.status(409));",
+              "pm.test(\"invalid state\", () => pm.expect(pm.response.json().code).to.eql(\"INVALID_JOB_STATE\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/jobs/{{jobId}}/replay",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"priority\": \"HIGH\"}"
+        }
+      }
     },
     {
       "name": "Stats",

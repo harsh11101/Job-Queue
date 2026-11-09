@@ -15,5 +15,7 @@ public enum JobStatus {
     /** Job completed successfully and all side effects are recorded. */
     SUCCEEDED,
     /** Job exhausted retries or failed with a non-retryable error. */
-    DLQ
+    DLQ,
+    /** Cancelled by an operator from QUEUED, RETRY_SCHEDULED or DLQ. Final: never run, retried or replayed. */
+    CANCELLED
 }

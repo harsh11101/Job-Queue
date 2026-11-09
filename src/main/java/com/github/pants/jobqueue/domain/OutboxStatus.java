@@ -11,5 +11,7 @@ public enum OutboxStatus {
     /** Row was successfully sent to Kafka. */
     PUBLISHED,
     /** Row publication failed and will be retried by the scheduler. */
-    FAILED
+    FAILED,
+    /** Row's job was cancelled before it was sent; it is never published. */
+    CANCELLED
 }

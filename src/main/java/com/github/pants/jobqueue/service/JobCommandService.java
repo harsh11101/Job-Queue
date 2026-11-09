@@ -197,6 +197,36 @@ public class JobCommandService {
     }
 
     /**
+     * Cancels a job that is QUEUED, RETRY_SCHEDULED or in DLQ. A cancelled job is final:
+     * it never runs again and cannot be replayed. Cancelling an already cancelled job
+     * returns it unchanged, so the call is safe to repeat.
+     *
+     * <p>The job and its unsent outbox rows change in one transaction. Messages already on
+     * Kafka are skipped by workers, because a worker can only start an attempt on a job that
+     * is still waiting for it (see {@link JobStore#markProcessing}).</p>
+     *
+     * @param jobId job id.
+     * @return cancelled job.
+     * @throws InvalidJobStateException when the job is PROCESSING or SUCCEEDED.
+     */
+    public JobResponse cancel(final UUID jobId) {
+        final Instant now = Instant.now(clock);
+        return transactionTemplate.execute(status -> {
+            if (jobStore.cancelJob(jobId, now)) {
+                jobStore.cancelUnsentOutbox(jobId, now);
+                meterRegistry.counter("jobqueue.jobs.cancelled").increment();
+                return JobResponse.from(requireJob(jobId));
+            }
+            final JobRecord job = requireJob(jobId);
+            if (JobStatus.CANCELLED.name().equals(job.status())) {
+                return JobResponse.from(job);
+            }
+            throw new InvalidJobStateException("A " + job.status()
+                    + " job cannot be cancelled; only QUEUED, RETRY_SCHEDULED or DLQ jobs can");
+        });
+    }
+
+    /**
      * Returns current job counters.
      *
      * @return counts by status and by priority, plus mean successful attempt duration.

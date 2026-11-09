@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1368 798" width="1368" height="798" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1368 818" width="1368" height="818" font-family="Helvetica, Arial, sans-serif">
 <defs>
 <marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
 </defs>
-<rect x="16" y="-4" width="1368" height="798" fill="#ffffff"/>
+<rect x="16" y="-4" width="1368" height="818" fill="#ffffff"/>
 <rect x="520.0" y="120.0" width="400.0" height="340.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="3"/>
 <rect x="60.0" y="120.0" width="400.0" height="300.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
 <rect x="980.0" y="120.0" width="380.0" height="200.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
@@ -10,7 +10,7 @@
 <polyline points="460.0,165.0 520.0,165.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
 <polyline points="980.0,160.0 920.0,160.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
 <polyline points="980.0,396.0 920.0,396.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
-<rect x="60.0" y="600.0" width="1300.0" height="170.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<rect x="60.0" y="600.0" width="1300.0" height="190.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
 <text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Data model — PostgreSQL (Flyway V1)</text>
 <text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">Four tables. Every child row points at jobs.id. PK = primary key, FK = foreign key, UQ = unique, IX = index.</text>
 <text x="532.0" y="144.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">jobs</text>
@@ -34,7 +34,7 @@
 <text x="72.0" y="214.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      topic · message_key (= idempotency key)</text>
 <text x="72.0" y="232.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      payload_json · headers_json</text>
 <text x="72.0" y="249.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      status: PENDING | PUBLISHING |</text>
-<text x="72.0" y="267.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">                  PUBLISHED | FAILED</text>
+<text x="72.0" y="267.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">                  PUBLISHED | FAILED | CANCELLED</text>
 <text x="72.0" y="284.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      attempts · not_before</text>
 <text x="72.0" y="302.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      created_at · updated_at · published_at</text>
 <text x="72.0" y="319.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      last_error</text>
@@ -66,4 +66,5 @@
 <text x="72.0" y="694.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">   final jobs state + attempt outcome + retry or DLQ outbox row (WHERE status = &#x27;PROCESSING&#x27; AND attempt = :attempt).</text>
 <text x="72.0" y="712.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• JobExecutor: side_effect_receipts row; the unique effect_key stops a duplicate business effect on redelivery.</text>
 <text x="72.0" y="729.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• Lease recovery: same fenced transaction as a worker failure, for jobs still PROCESSING after leased_until.</text>
+<text x="72.0" y="747.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• Cancel (API): jobs → CANCELLED from QUEUED / RETRY_SCHEDULED / DLQ + its unsent outbox rows → CANCELLED, one transaction.</text>
 </svg>

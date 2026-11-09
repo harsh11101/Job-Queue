@@ -117,6 +117,18 @@ public class JobController {
     }
 
     /**
+     * Cancels a QUEUED, RETRY_SCHEDULED or DLQ job. Cancelled jobs never run and cannot be replayed.
+     *
+     * @param id job id.
+     * @return 200 with the cancelled job (also when it was already cancelled); 409 when the
+     *         job is PROCESSING or SUCCEEDED; 404 when unknown.
+     */
+    @PostMapping("/{id}/cancel")
+    public JobResponse cancel(@PathVariable final UUID id) {
+        return jobCommandService.cancel(id);
+    }
+
+    /**
      * Returns job counters grouped by status and by priority.
      *
      * @return stats response.

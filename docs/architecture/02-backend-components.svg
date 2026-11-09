@@ -7,7 +7,7 @@
 <rect x="380.0" y="140.0" width="260.0" height="100.0" rx="8" fill="#ffa8a8" stroke="#c92a2a" stroke-width="2"/>
 <rect x="680.0" y="140.0" width="260.0" height="100.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
 <rect x="1060.0" y="140.0" width="240.0" height="100.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
-<rect x="80.0" y="330.0" width="260.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="60.0" y="330.0" width="300.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
 <rect x="680.0" y="330.0" width="260.0" height="110.0" rx="8" fill="#ffa8a8" stroke="#c92a2a" stroke-width="3"/>
 <rect x="1060.0" y="330.0" width="240.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
 <rect x="440.0" y="530.0" width="200.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
@@ -47,7 +47,7 @@
 <text x="1180.0" y="194.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-high · jobs-low</text>
 <text x="1180.0" y="211.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">retry-5s / 30s / 2m · dlq</text>
 <text x="210.0" y="371.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobCommandService</text>
-<text x="210.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">create (idempotent) · replay</text>
+<text x="210.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">create (idempotent) · replay · cancel</text>
 <text x="210.0" y="406.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">get · list · attempts · stats</text>
 <text x="810.0" y="371.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobWorkerService</text>
 <text x="810.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">process(message, topic)</text>
@@ -79,7 +79,8 @@
 <text x="218.0" y="277.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">calls</text>
 <text x="218.0" y="612.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">one tx: job +</text>
 <text x="218.0" y="628.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">first outbox row;</text>
-<text x="218.0" y="644.5" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">replay; queries</text>
+<text x="218.0" y="644.5" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">replay; cancel;</text>
+<text x="218.0" y="660.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">queries</text>
 <text x="818.0" y="284.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">process(payload, topic)</text>
 <text x="518.0" y="274.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">recoverExpiredLease(job)</text>
 <text x="366.0" y="662.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">findExpiredLeases</text>

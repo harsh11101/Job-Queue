@@ -100,6 +100,43 @@ class JobLifecycleIntegrationTest extends IntegrationTestSupport {
      * Replay is refused for a job that is not in DLQ.
      */
     @Test
+    void dlqJobCanBeCancelledAndIsThenNeverReplayed() {
+        final UUID jobId = createJob(key("cancel-dlq"), "LOW", "{\"simulatePermanentFailure\":true}", 4);
+        await().atMost(TIMEOUT).until(() -> "DLQ".equals(statusOf(jobId)));
+
+        final HttpResponse<String> cancel = post("/api/v1/jobs/" + jobId + "/cancel", "");
+        assertThat(cancel.statusCode()).isEqualTo(200);
+        assertThat(json(cancel).path("status").asString()).isEqualTo("CANCELLED");
+
+        final HttpResponse<String> again = post("/api/v1/jobs/" + jobId + "/cancel", "");
+        assertThat(again.statusCode()).isEqualTo(200);
+        assertThat(json(again).path("status").asString()).isEqualTo("CANCELLED");
+
+        final HttpResponse<String> replay = post("/api/v1/jobs/" + jobId + "/replay", "{\"priority\":\"HIGH\"}");
+        assertThat(replay.statusCode()).isEqualTo(409);
+        assertThat(statusOf(jobId)).isEqualTo("CANCELLED");
+    }
+
+    @Test
+    void succeededJobCannotBeCancelled() {
+        final UUID jobId = createJob(key("cancel-done"), "HIGH", "{}", 4);
+        await().atMost(TIMEOUT).until(() -> "SUCCEEDED".equals(statusOf(jobId)));
+
+        final HttpResponse<String> response = post("/api/v1/jobs/" + jobId + "/cancel", "");
+
+        assertThat(response.statusCode()).isEqualTo(409);
+        assertThat(json(response).path("code").asString()).isEqualTo("INVALID_JOB_STATE");
+        assertThat(statusOf(jobId)).isEqualTo("SUCCEEDED");
+    }
+
+    @Test
+    void cancellingUnknownJobIsNotFound() {
+        final HttpResponse<String> response = post("/api/v1/jobs/" + UUID.randomUUID() + "/cancel", "");
+
+        assertThat(response.statusCode()).isEqualTo(404);
+    }
+
+    @Test
     void replayOfNonDlqJobIsRejected() {
         final UUID jobId = createJob(key("not-dlq"), "LOW", "{}", 4);
 

@@ -15,6 +15,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import java.time.Clock;
 import java.time.Instant;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,10 @@ public class JobWorkerService {
 
     /** Metric tag for attempts ended by lease recovery rather than by a Kafka message. */
     static final String LEASE_RECOVERY = "lease-recovery";
+
+    /** States a job never leaves on its own; messages for them are acknowledged and skipped. */
+    private static final Set<String> TERMINAL =
+            Set.of(JobStatus.SUCCEEDED.name(), JobStatus.DLQ.name(), JobStatus.CANCELLED.name());
 
     private final Clock clock;
     private final DistributedLockService lockService;
@@ -71,19 +76,19 @@ public class JobWorkerService {
     }
 
     private void processLocked(final JobQueueMessage message, final String topic) {
-        final Instant now = Instant.now(clock);
-        if (message.notBefore() != null && now.isBefore(message.notBefore())) {
-            rescheduleEarlyMessage(message, topic, message.notBefore());
-            return;
-        }
         final Optional<JobRecord> found = jobStore.findJobById(message.jobId());
         if (found.isEmpty()) {
             log.warn("Ignoring message for missing job {}", message.jobId());
             return;
         }
         final JobRecord job = found.get();
-        if (JobStatus.SUCCEEDED.name().equals(job.status()) || JobStatus.DLQ.name().equals(job.status())) {
+        if (TERMINAL.contains(job.status())) {
             meterRegistry.counter("jobqueue.worker.terminal.skipped", "status", job.status()).increment();
+            return;
+        }
+        final Instant now = Instant.now(clock);
+        if (message.notBefore() != null && now.isBefore(message.notBefore())) {
+            rescheduleEarlyMessage(message, topic, message.notBefore());
             return;
         }
         executeAttempt(job, message, topic);
@@ -93,7 +98,12 @@ public class JobWorkerService {
         try {
             final Instant startedAt = Instant.now(clock);
             final Instant leaseUntil = startedAt.plus(properties.getWorker().getLockTtl());
-            jobStore.markProcessing(job.id(), message.attempt(), workerIdentity.value(), startedAt, leaseUntil);
+            if (!jobStore.markProcessing(job.id(), message.attempt(), workerIdentity.value(), startedAt, leaseUntil)) {
+                // Cancelled since the read above, or a stale message for an attempt that already ended.
+                meterRegistry.counter("jobqueue.worker.start.skipped", "topic", topic).increment();
+                log.info("Job {} cannot start attempt {}; message skipped", job.id(), message.attempt());
+                return;
+            }
             jobStore.insertAttemptStarted(job.id(), message.attempt(), topic, startedAt);
             final JobExecutionResult result = jobExecutor.execute(job);
             final boolean recorded = Boolean.TRUE.equals(transactionTemplate.execute(status -> {

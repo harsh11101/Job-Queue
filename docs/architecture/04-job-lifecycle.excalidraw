@@ -106,7 +106,7 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-start-queued-16"
+          "id": "arrow-start-queued-18"
         }
       ],
       "updated": 1,
@@ -180,15 +180,19 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-start-queued-16"
+          "id": "arrow-start-queued-18"
         },
         {
           "type": "arrow",
-          "id": "arrow-queued-processing-18"
+          "id": "arrow-queued-processing-20"
         },
         {
           "type": "arrow",
-          "id": "arrow-dlq-queued-28"
+          "id": "arrow-dlq-queued-30"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-queued-cancelled-32"
         }
       ],
       "updated": 1,
@@ -262,23 +266,23 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-queued-processing-18"
+          "id": "arrow-queued-processing-20"
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-succeeded-20"
+          "id": "arrow-processing-succeeded-22"
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-dlq-22"
+          "id": "arrow-processing-dlq-24"
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-retry-24"
+          "id": "arrow-processing-retry-26"
         },
         {
           "type": "arrow",
-          "id": "arrow-retry-processing-26"
+          "id": "arrow-retry-processing-28"
         }
       ],
       "updated": 1,
@@ -352,7 +356,7 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-succeeded-20"
+          "id": "arrow-processing-succeeded-22"
         }
       ],
       "updated": 1,
@@ -426,11 +430,15 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-dlq-22"
+          "id": "arrow-processing-dlq-24"
         },
         {
           "type": "arrow",
-          "id": "arrow-dlq-queued-28"
+          "id": "arrow-dlq-queued-30"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-dlq-cancelled-34"
         }
       ],
       "updated": 1,
@@ -504,11 +512,15 @@
         },
         {
           "type": "arrow",
-          "id": "arrow-processing-retry-24"
+          "id": "arrow-processing-retry-26"
         },
         {
           "type": "arrow",
-          "id": "arrow-retry-processing-26"
+          "id": "arrow-retry-processing-28"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-retry-cancelled-36"
         }
       ],
       "updated": 1,
@@ -552,7 +564,89 @@
       "autoResize": true
     },
     {
-      "id": "arrow-start-queued-16",
+      "id": "cancelled",
+      "type": "rectangle",
+      "x": 1380,
+      "y": 450,
+      "width": 220,
+      "height": 90,
+      "angle": 0,
+      "strokeColor": "#868e96",
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 3,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 16,
+      "version": 1,
+      "versionNonce": 16,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "cancelled-text"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-queued-cancelled-32"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-dlq-cancelled-34"
+        },
+        {
+          "type": "arrow",
+          "id": "arrow-retry-cancelled-36"
+        }
+      ],
+      "updated": 1,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "cancelled-text",
+      "type": "text",
+      "x": 1385,
+      "y": 477.5,
+      "width": 210,
+      "height": 35.0,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 17,
+      "version": 1,
+      "versionNonce": 17,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "text": "CANCELLED\nfinal: never runs or replays",
+      "originalText": "CANCELLED\nfinal: never runs or replays",
+      "fontSize": 14,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "cancelled",
+      "lineHeight": 1.25,
+      "autoResize": true
+    },
+    {
+      "id": "arrow-start-queued-18",
       "type": "arrow",
       "x": 220,
       "y": 335.0,
@@ -569,9 +663,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 16,
+      "seed": 18,
       "version": 1,
-      "versionNonce": 16,
+      "versionNonce": 18,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -611,7 +705,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-17",
+      "id": "note-19",
       "type": "text",
       "x": 222,
       "y": 250,
@@ -628,9 +722,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 17,
+      "seed": 19,
       "version": 1,
-      "versionNonce": 17,
+      "versionNonce": 19,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -647,7 +741,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-queued-processing-18",
+      "id": "arrow-queued-processing-20",
       "type": "arrow",
       "x": 490,
       "y": 335.0,
@@ -664,9 +758,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 18,
+      "seed": 20,
       "version": 1,
-      "versionNonce": 18,
+      "versionNonce": 20,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -706,7 +800,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-19",
+      "id": "note-21",
       "type": "text",
       "x": 500,
       "y": 240,
@@ -723,9 +817,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 19,
+      "seed": 21,
       "version": 1,
-      "versionNonce": 19,
+      "versionNonce": 21,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -742,7 +836,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-processing-succeeded-20",
+      "id": "arrow-processing-succeeded-22",
       "type": "arrow",
       "x": 860,
       "y": 317.0,
@@ -759,9 +853,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 20,
+      "seed": 22,
       "version": 1,
-      "versionNonce": 20,
+      "versionNonce": 22,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -809,7 +903,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-21",
+      "id": "note-23",
       "type": "text",
       "x": 968,
       "y": 228,
@@ -826,9 +920,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 21,
+      "seed": 23,
       "version": 1,
-      "versionNonce": 21,
+      "versionNonce": 23,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -845,7 +939,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-processing-dlq-22",
+      "id": "arrow-processing-dlq-24",
       "type": "arrow",
       "x": 860,
       "y": 353.0,
@@ -862,9 +956,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 22,
+      "seed": 24,
       "version": 1,
-      "versionNonce": 22,
+      "versionNonce": 24,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -912,7 +1006,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-23",
+      "id": "note-25",
       "type": "text",
       "x": 968,
       "y": 372,
@@ -929,9 +1023,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 23,
+      "seed": 25,
       "version": 1,
-      "versionNonce": 23,
+      "versionNonce": 25,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -948,7 +1042,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-processing-retry-24",
+      "id": "arrow-processing-retry-26",
       "type": "arrow",
       "x": 706.0,
       "y": 380,
@@ -965,9 +1059,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 24,
+      "seed": 26,
       "version": 1,
-      "versionNonce": 24,
+      "versionNonce": 26,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1007,7 +1101,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-25",
+      "id": "note-27",
       "type": "text",
       "x": 520,
       "y": 440,
@@ -1024,9 +1118,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 25,
+      "seed": 27,
       "version": 1,
-      "versionNonce": 25,
+      "versionNonce": 27,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1043,7 +1137,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-retry-processing-26",
+      "id": "arrow-retry-processing-28",
       "type": "arrow",
       "x": 794.0,
       "y": 570,
@@ -1060,9 +1154,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 26,
+      "seed": 28,
       "version": 1,
-      "versionNonce": 26,
+      "versionNonce": 28,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1102,7 +1196,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-27",
+      "id": "note-29",
       "type": "text",
       "x": 802,
       "y": 455,
@@ -1119,9 +1213,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 27,
+      "seed": 29,
       "version": 1,
-      "versionNonce": 27,
+      "versionNonce": 29,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1138,7 +1232,7 @@
       "autoResize": true
     },
     {
-      "id": "arrow-dlq-queued-28",
+      "id": "arrow-dlq-queued-30",
       "type": "arrow",
       "x": 1170.0,
       "y": 540,
@@ -1155,9 +1249,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 28,
+      "seed": 30,
       "version": 1,
-      "versionNonce": 28,
+      "versionNonce": 30,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1205,7 +1299,7 @@
       "lastCommittedPoint": null
     },
     {
-      "id": "note-29",
+      "id": "note-31",
       "type": "text",
       "x": 470,
       "y": 728,
@@ -1222,9 +1316,9 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 29,
+      "seed": 31,
       "version": 1,
-      "versionNonce": 29,
+      "versionNonce": 31,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -1241,12 +1335,12 @@
       "autoResize": true
     },
     {
-      "id": "note-30",
-      "type": "text",
-      "x": 60,
-      "y": 790,
-      "width": 842.8800000000001,
-      "height": 35.0,
+      "id": "arrow-queued-cancelled-32",
+      "type": "arrow",
+      "x": 390.0,
+      "y": 290,
+      "width": 1100.0,
+      "height": 350,
       "angle": 0,
       "strokeColor": "#495057",
       "backgroundColor": "transparent",
@@ -1258,16 +1352,313 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 30,
+      "seed": 32,
       "version": 1,
-      "versionNonce": 30,
+      "versionNonce": 32,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
-      "text": "Retry delays are set by app.job-queue.retry.* (first 5 s, second 30 s, every later one 2 min).\nmaxAttempts defaults to 4 (1–20 per job). Messages for a SUCCEEDED or DLQ job are acknowledged and skipped.",
-      "originalText": "Retry delays are set by app.job-queue.retry.* (first 5 s, second 30 s, every later one 2 min).\nmaxAttempts defaults to 4 (1–20 per job). Messages for a SUCCEEDED or DLQ job are acknowledged and skipped.",
+      "points": [
+        [
+          0.0,
+          0
+        ],
+        [
+          0.0,
+          -190
+        ],
+        [
+          1100.0,
+          -190
+        ],
+        [
+          1100.0,
+          160
+        ]
+      ],
+      "elbowed": true,
+      "startBinding": {
+        "elementId": "queued",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          0.5,
+          0
+        ]
+      },
+      "endBinding": {
+        "elementId": "cancelled",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          0.5,
+          0
+        ]
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "lastCommittedPoint": null
+    },
+    {
+      "id": "note-33",
+      "type": "text",
+      "x": 1220,
+      "y": 78,
+      "width": 215.12000000000003,
+      "height": 16.25,
+      "angle": 0,
+      "strokeColor": "#343a40",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 33,
+      "version": 1,
+      "versionNonce": 33,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "text": "POST /api/v1/jobs/{id}/cancel",
+      "originalText": "POST /api/v1/jobs/{id}/cancel",
+      "fontSize": 13,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": true
+    },
+    {
+      "id": "arrow-dlq-cancelled-34",
+      "type": "arrow",
+      "x": 1280,
+      "y": 495.0,
+      "width": 100,
+      "height": 0.0,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 34,
+      "version": 1,
+      "versionNonce": 34,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0.0
+        ],
+        [
+          100,
+          0.0
+        ]
+      ],
+      "elbowed": false,
+      "startBinding": {
+        "elementId": "dlq",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          1,
+          0.5
+        ]
+      },
+      "endBinding": {
+        "elementId": "cancelled",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          0,
+          0.5
+        ]
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "lastCommittedPoint": null
+    },
+    {
+      "id": "note-35",
+      "type": "text",
+      "x": 1306.16,
+      "y": 474.75,
+      "width": 47.68000000000001,
+      "height": 16.25,
+      "angle": 0,
+      "strokeColor": "#343a40",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 35,
+      "version": 1,
+      "versionNonce": 35,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "text": "cancel",
+      "originalText": "cancel",
+      "fontSize": 13,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": true
+    },
+    {
+      "id": "arrow-retry-cancelled-36",
+      "type": "arrow",
+      "x": 860,
+      "y": 633.0,
+      "width": 660,
+      "height": 93.0,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 36,
+      "version": 1,
+      "versionNonce": 36,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0.0
+        ],
+        [
+          660,
+          0.0
+        ],
+        [
+          660.0,
+          -93.0
+        ]
+      ],
+      "elbowed": true,
+      "startBinding": {
+        "elementId": "retry",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          1,
+          0.7
+        ]
+      },
+      "endBinding": {
+        "elementId": "cancelled",
+        "focus": 0,
+        "gap": 1,
+        "fixedPoint": [
+          0.6363636363636364,
+          1
+        ]
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "lastCommittedPoint": null
+    },
+    {
+      "id": "note-37",
+      "type": "text",
+      "x": 1300,
+      "y": 612,
+      "width": 47.68000000000001,
+      "height": 16.25,
+      "angle": 0,
+      "strokeColor": "#343a40",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 37,
+      "version": 1,
+      "versionNonce": 37,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "text": "cancel",
+      "originalText": "cancel",
+      "fontSize": 13,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": true
+    },
+    {
+      "id": "note-38",
+      "type": "text",
+      "x": 60,
+      "y": 790,
+      "width": 929.1200000000001,
+      "height": 52.5,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 38,
+      "version": 1,
+      "versionNonce": 38,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "text": "Retry delays are set by app.job-queue.retry.* (first 5 s, second 30 s, every later one 2 min).\nmaxAttempts defaults to 4 (1–20 per job). Messages for a SUCCEEDED, DLQ or CANCELLED job are acknowledged and skipped.\nCancel is refused (409) for PROCESSING and SUCCEEDED jobs; a cancel and a worker starting the job cannot both win.",
+      "originalText": "Retry delays are set by app.job-queue.retry.* (first 5 s, second 30 s, every later one 2 min).\nmaxAttempts defaults to 4 (1–20 per job). Messages for a SUCCEEDED, DLQ or CANCELLED job are acknowledged and skipped.\nCancel is refused (409) for PROCESSING and SUCCEEDED jobs; a cancel and a worker starting the job cannot both win.",
       "fontSize": 14,
       "fontFamily": 2,
       "textAlign": "left",

@@ -52,6 +52,12 @@ If an instance dies after claiming rows, those rows stay `PUBLISHING`. A later t
 
 If anything throws before the final commit, the message is not acknowledged and Kafka redelivers it. The redelivered run hits the same receipt key, so the business effect is not repeated.
 
+### Starting an attempt and cancelling
+
+A worker starts an attempt with a conditional update: the job must be `QUEUED` or `RETRY_SCHEDULED` at a lower attempt number, or already `PROCESSING` this same attempt (a redelivery after a transient error, under the same lease). Anything else, a cancelled job or a stale message for an attempt that has already ended, matches no row and the message is acknowledged and skipped.
+
+`POST /{id}/cancel` is the mirror image: it moves the job to `CANCELLED` only from `QUEUED`, `RETRY_SCHEDULED` or `DLQ`, and in the same transaction marks the job's unsent outbox rows `CANCELLED` so they are never published. Both updates touch the same row, so PostgreSQL lets exactly one of them win; a cancel never races a running attempt. Replay only accepts `DLQ` jobs, so a cancelled job cannot be replayed.
+
 ### Stranded jobs
 
 If the worker process dies, the redelivered message arrives while the dead worker's lease is still in Redis, so it is skipped and acknowledged. `ExpiredLeaseRecovery`, a scheduled task on every replica (every 30 s), finds jobs still `PROCESSING` after `leased_until` and ends the attempt as a retryable failure through the same code path a worker uses.
@@ -81,5 +87,5 @@ Kafka transactions cover Kafka-to-Kafka flows. Business effects touch databases,
 3. Redis leases stop concurrent processing of one job. Lease TTL (6 min) must be at least `processing-timeout` (5 min); startup fails otherwise.
 4. Leases are released with a Lua script that deletes only if the stored token is still ours, so a worker whose lease expired cannot delete the next owner's lease.
 5. Unique `side_effect_receipts.effect_key` (`TYPE:idempotencyKey`) stops a duplicate effect even if two workers ever run the same job.
-6. Terminal states are checked before execution, so redelivery after success is a no-op.
+6. Terminal states (`SUCCEEDED`, `DLQ`, `CANCELLED`) are checked before execution, so redelivery after the job ended is a no-op.
 7. Ending an attempt is fenced on its attempt number, so a worker whose stranded attempt was recovered cannot overwrite the job.

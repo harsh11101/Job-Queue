@@ -39,7 +39,7 @@ Retry delays are 5 s, 30 s and then 2 min for every later attempt (`jobs-retry-5
 | [High-level architecture](docs/architecture/01-high-level-architecture.svg) | High | Callers, the four components of a service replica, PostgreSQL, Redis and the Kafka topics |
 | [Backend components](docs/architecture/02-backend-components.svg) | Low | Spring beans and who calls whom |
 | [Data model](docs/architecture/03-data-model.svg) | Low | Tables, keys, indexes and which component writes each |
-| [Job lifecycle](docs/architecture/04-job-lifecycle.svg) | Low | States and transitions, including lease recovery and replay |
+| [Job lifecycle](docs/architecture/04-job-lifecycle.svg) | Low | States and transitions, including lease recovery, replay and cancel |
 | [Create and publish flow](docs/architecture/05-create-and-publish-flow.svg) | Low | Create request outcomes and the transactional outbox loop |
 | [Worker and recovery flow](docs/architecture/06-worker-and-recovery-flow.svg) | Low | Every decision a worker makes for one message, and the lease recovery task |
 | [Dashboard architecture](../job-queue-dashboard/docs/architecture/dashboard-architecture.svg) | Low | Frontend routes, query hooks and API client (in the dashboard project) |
@@ -137,7 +137,10 @@ curl -X POST http://localhost:8080/api/v1/jobs -H 'Content-Type: application/jso
 # 6. Replay a DLQ job (priority is optional and defaults to LOW)
 curl -X POST http://localhost:8080/api/v1/jobs/{id}/replay -H 'Content-Type: application/json' -d '{"priority":"HIGH"}'
 
-# 7. Counts and list
+# 7. Cancel a QUEUED, RETRY_SCHEDULED or DLQ job: final, it never runs again and cannot be replayed
+curl -X POST http://localhost:8080/api/v1/jobs/{id}/cancel
+
+# 8. Counts and list
 curl http://localhost:8080/api/v1/jobs/stats
 curl 'http://localhost:8080/api/v1/jobs?status=DLQ&priority=LOW&page=0&size=20'
 ```
@@ -173,8 +176,8 @@ The integration tests start real PostgreSQL, Kafka and Redis containers through 
 | Suite | What it covers |
 | --- | --- |
 | `JobApiIntegrationTest` | HTTP contract: concurrent duplicate submissions create one job, 409 conflict, idempotency lookup, 404, 400 validation, list filters and paging, stats, CORS on the API and on `/actuator` |
-| `JobLifecycleIntegrationTest` | Full path through outbox and Kafka: success, routing by priority, retry chain to DLQ and replay, permanent failure, replay of a non-DLQ job rejected |
-| `WorkerConcurrencyIntegrationTest` | Duplicate deliveries give one side effect, lease mutual exclusion and safe release, disjoint outbox claims, reclaim of stuck `PUBLISHING` rows, recovery of jobs stranded in `PROCESSING` (retry, DLQ on last attempt, fencing, live lease untouched), work runs on virtual threads |
+| `JobLifecycleIntegrationTest` | Full path through outbox and Kafka: success, routing by priority, retry chain to DLQ and replay, permanent failure, replay of a non-DLQ job rejected, cancel of a DLQ job (repeatable, then no replay), cancel of a succeeded job rejected, cancel of an unknown job |
+| `WorkerConcurrencyIntegrationTest` | Duplicate deliveries give one side effect, lease mutual exclusion and safe release, disjoint outbox claims, reclaim of stuck `PUBLISHING` rows, recovery of jobs stranded in `PROCESSING` (retry, DLQ on last attempt, fencing, live lease untouched), work runs on virtual threads, a cancelled job's queued message never runs it, a running job cannot be cancelled, cancel and start-of-attempt are mutually exclusive, stale messages cannot restart an ended attempt |
 | `JobQueuePropertiesTest` | Startup fails when `lock-ttl` is shorter than `processing-timeout` |
 | `RetryPolicyTest`, `JobPriorityTest`, `HashSupportTest`, `JobQueueMessageSerializationTest` | Unit tests |
 
@@ -228,6 +231,7 @@ Base path `/api/v1/jobs`. Errors are returned as `{"code", "message", "timestamp
 | `GET` | `/api/v1/jobs/{id}/attempts` | Attempt history, oldest first |
 | `GET` | `/api/v1/jobs/idempotency/{key}` | Job by idempotency key; `404` if unknown |
 | `POST` | `/api/v1/jobs/{id}/replay` | Moves a `DLQ` job back to `QUEUED`. Body `{"priority": "HIGH"}`, or `{}` for `LOW`; `409 INVALID_JOB_STATE` if the job is not in DLQ |
+| `POST` | `/api/v1/jobs/{id}/cancel` | Cancels a `QUEUED`, `RETRY_SCHEDULED` or `DLQ` job; no body. `200` with the job, also when it was already `CANCELLED`; `409 INVALID_JOB_STATE` when it is `PROCESSING` or `SUCCEEDED`; `404` if unknown. A cancelled job never runs again and cannot be replayed |
 | `GET` | `/api/v1/jobs/stats` | Counts by status, counts by priority and status, mean duration of successful attempts |
 | `GET` | `/actuator/health`, `/actuator/health/{liveness,readiness}` | Health probes |
 | `GET` | `/actuator/prometheus` | Metrics |
@@ -255,7 +259,7 @@ Kafka delivers **at least once**, not exactly once to the database or the outsid
 4. **Manual Kafka acknowledgement**: an offset is acknowledged only after the next state has been committed, or after a safe skip.
 5. **Redis lease**: stops two instances from running the same job at the same time. It is released with a compare-and-delete script, so a worker can never release another worker's lease.
 6. **Side-effect receipt**: `side_effect_receipts.effect_key` is unique, so a redelivered message cannot create the same effect twice.
-7. **Terminal-state check**: a message for a job that is already `SUCCEEDED` or `DLQ` is acknowledged and skipped.
+7. **Terminal-state check**: a message for a job that is already `SUCCEEDED`, `DLQ` or `CANCELLED` is acknowledged and skipped.
 8. **Stranded-job recovery**: a scheduled task (every 30 s) retries jobs still `PROCESSING` after their worker's lease expired, for example because the worker crashed. Ending an attempt is fenced on its attempt number, so a slow worker that comes back cannot overwrite the job.
 
 ## Production notes
@@ -276,7 +280,7 @@ src/main/java/com/github/pants/jobqueue/
   domain/       statuses, priorities, messages
   messaging/    Kafka listeners and outbox publisher
   persistence/  JobStore (JdbcClient) and row records
-  service/      create/replay commands, worker, retry policy, Redis lock, executor
+  service/      create/replay/cancel commands, worker, retry policy, Redis lock, executor, lease recovery
 src/main/resources/db/migration/   Flyway schema
 docs/                              architecture notes and runbook
 docs/architecture/                 design diagrams (.excalidraw sources + exported .svg)
