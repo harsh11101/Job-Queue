@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1658 960" width="1658" height="960" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
+</defs>
+<rect x="16" y="-4" width="1658" height="960" fill="#ffffff"/>
+<rect x="1360.0" y="380.0" width="290.0" height="470.0" rx="0" fill="none" stroke="#e67700" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="380.0" y="430.0" width="900.0" height="190.0" rx="0" fill="none" stroke="#7048e8" stroke-width="2" stroke-dasharray="8 6"/>
+<ellipse cx="170.0" cy="170.0" rx="110.0" ry="40.0" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<ellipse cx="505.0" cy="170.0" rx="90.0" ry="40.0" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="60.0" y="280.0" width="220.0" height="100.0" rx="8" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="60.0" y="560.0" width="220.0" height="90.0" rx="8" fill="#f1f3f5" stroke="#495057" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="410.0" y="490.0" width="190.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="630.0" y="490.0" width="190.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="850.0" y="490.0" width="190.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1070.0" y="490.0" width="190.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1385.0" y="440.0" width="240.0" height="48.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="1385.0" y="498.0" width="240.0" height="48.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="1385.0" y="556.0" width="240.0" height="48.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="1385.0" y="614.0" width="240.0" height="48.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="1385.0" y="672.0" width="240.0" height="48.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="1385.0" y="730.0" width="240.0" height="64.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="410.0" y="700.0" width="600.0" height="100.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="1070.0" y="700.0" width="190.0" height="100.0" rx="8" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<polyline points="170.0,210.0 170.0,280.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="280.0,330.0 345.0,330.0 345.0,517.5 410.0,517.5" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="505.0,210.0 505.0,490.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="280.0,605.0 370.0,605.0 370.0,578.0 410.0,578.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#ah0)"/>
+<polyline points="505.0,600.0 505.0,700.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="725.0,600.0 725.0,700.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="725.0,490.0 725.0,410.0 1360.0,410.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1360.0,545.0 1260.0,545.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="945.0,600.0 945.0,700.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1108.0,600.0 1108.0,680.0 990.0,680.0 990.0,700.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1231.5,600.0 1231.5,700.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<rect x="60.0" y="726.0" width="28.0" height="18.0" rx="0" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="60.0" y="754.0" width="28.0" height="18.0" rx="0" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="60.0" y="782.0" width="28.0" height="18.0" rx="0" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="60.0" y="810.0" width="28.0" height="18.0" rx="0" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="60.0" y="838.0" width="28.0" height="18.0" rx="0" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="60.0" y="866.0" width="28.0" height="18.0" rx="0" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<rect x="60.0" y="894.0" width="28.0" height="18.0" rx="0" fill="#f1f3f5" stroke="#495057" stroke-width="2"/>
+<text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Distributed Priority Job Queue — high-level architecture</text>
+<text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">Who talks to whom. Every service replica is identical and runs all four components.</text>
+<text x="170.0" y="164.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Operator</text>
+<text x="170.0" y="184.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(browser)</text>
+<text x="505.0" y="164.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">API client</text>
+<text x="505.0" y="184.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(any service)</text>
+<text x="170.0" y="314.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Job queue dashboard</text>
+<text x="170.0" y="334.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">React 19 SPA (Vite)</text>
+<text x="170.0" y="354.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">static host / Vercel</text>
+<text x="170.0" y="600.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Prometheus (optional)</text>
+<text x="170.0" y="617.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">scrapes /actuator/prometheus</text>
+<text x="850.0" y="452.9" font-size="14" fill="#7048e8" text-anchor="start" xml:space="preserve">Service · Spring Boot 4 · Java 25 · virtual threads</text>
+<text x="850.0" y="470.4" font-size="14" fill="#7048e8" text-anchor="start" xml:space="preserve">N identical replicas</text>
+<text x="505.0" y="519.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">REST API</text>
+<text x="505.0" y="539.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Spring MVC</text>
+<text x="505.0" y="559.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">/api/v1/jobs</text>
+<text x="505.0" y="579.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">/actuator</text>
+<text x="725.0" y="529.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Outbox publisher</text>
+<text x="725.0" y="549.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">@Scheduled</text>
+<text x="725.0" y="569.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">every 1 s</text>
+<text x="945.0" y="529.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Lease recovery</text>
+<text x="945.0" y="549.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">@Scheduled</text>
+<text x="945.0" y="569.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">every 30 s</text>
+<text x="1165.0" y="531.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Kafka workers</text>
+<text x="1165.0" y="549.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">high 6 · low 2 · retry 3</text>
+<text x="1165.0" y="566.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">per replica</text>
+<text x="1374.0" y="402.9" font-size="14" fill="#e67700" text-anchor="start" xml:space="preserve">Apache Kafka 4 (KRaft)</text>
+<text x="1374.0" y="420.4" font-size="14" fill="#e67700" text-anchor="start" xml:space="preserve">6 partitions per topic</text>
+<text x="1505.0" y="468.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-high</text>
+<text x="1505.0" y="526.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-low</text>
+<text x="1505.0" y="584.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-retry-5s</text>
+<text x="1505.0" y="642.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-retry-30s</text>
+<text x="1505.0" y="700.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-retry-2m</text>
+<text x="1505.0" y="757.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-dlq</text>
+<text x="1505.0" y="774.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(audit only, not consumed)</text>
+<text x="710.0" y="744.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">PostgreSQL 18 — source of truth</text>
+<text x="710.0" y="764.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs · job_outbox · job_attempts · side_effect_receipts</text>
+<text x="1165.0" y="734.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Redis 8</text>
+<text x="1165.0" y="754.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">per-job lease</text>
+<text x="1165.0" y="774.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SET NX + TTL 6 min</text>
+<text x="180.0" y="227.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">uses</text>
+<text x="352.0" y="362.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">REST calls + health poll</text>
+<text x="352.0" y="378.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">(CORS-checked)</text>
+<text x="515.0" y="312.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">POST /api/v1/jobs</text>
+<text x="515.0" y="328.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">returns after one DB commit</text>
+<text x="290.0" y="624.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">scrape</text>
+<text x="512.0" y="640.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">INSERT job + outbox row</text>
+<text x="512.0" y="656.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">(one transaction)</text>
+<text x="732.0" y="640.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">claim due rows</text>
+<text x="732.0" y="656.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">(SKIP LOCKED)</text>
+<text x="740.0" y="398.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">publish to the job&#x27;s topic (acks=all)</text>
+<text x="1268.0" y="565.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">consume,</text>
+<text x="1268.0" y="581.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">manual ack</text>
+<text x="952.0" y="640.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">find expired</text>
+<text x="952.0" y="656.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">leases</text>
+<text x="1116.0" y="642.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">state + next</text>
+<text x="1116.0" y="658.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">outbox row (1 tx)</text>
+<text x="1238.0" y="652.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">lease</text>
+<text x="60.0" y="712.9" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">Legend</text>
+<text x="98.0" y="737.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">People and callers</text>
+<text x="98.0" y="765.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Frontend</text>
+<text x="98.0" y="793.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Service components</text>
+<text x="98.0" y="821.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Database</text>
+<text x="98.0" y="849.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Kafka topics</text>
+<text x="98.0" y="877.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Redis</text>
+<text x="98.0" y="905.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Optional / not part of this repo (dashed)</text>
+<text x="410.0" y="892.9" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">Coordination between replicas: PostgreSQL row locks (outbox claims) · Kafka consumer groups (partitions) ·</text>
+<text x="410.0" y="910.4" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">Redis leases + fenced end-of-attempt updates (one attempt at a time). Execution is always asynchronous:</text>
+<text x="410.0" y="927.9" font-size="14" fill="#495057" text-anchor="start" xml:space="preserve">the API never waits for a job to run.</text>
+</svg>

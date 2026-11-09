@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1368 798" width="1368" height="798" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
+</defs>
+<rect x="16" y="-4" width="1368" height="798" fill="#ffffff"/>
+<rect x="520.0" y="120.0" width="400.0" height="340.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="3"/>
+<rect x="60.0" y="120.0" width="400.0" height="300.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="980.0" y="120.0" width="380.0" height="200.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="980.0" y="360.0" width="380.0" height="180.0" rx="8" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<polyline points="460.0,165.0 520.0,165.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="980.0,160.0 920.0,160.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="980.0,396.0 920.0,396.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<rect x="60.0" y="600.0" width="1300.0" height="170.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Data model — PostgreSQL (Flyway V1)</text>
+<text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">Four tables. Every child row points at jobs.id. PK = primary key, FK = foreign key, UQ = unique, IX = index.</text>
+<text x="532.0" y="144.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">jobs</text>
+<text x="532.0" y="179.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">PK  id  UUID</text>
+<text x="532.0" y="197.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">UQ  idempotency_key</text>
+<text x="532.0" y="214.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      request_hash  (SHA-256 of key, type, priority, payload)</text>
+<text x="532.0" y="232.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      type · priority · status</text>
+<text x="532.0" y="249.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      payload_json · result_json</text>
+<text x="532.0" y="267.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      error_message · failure_class</text>
+<text x="532.0" y="284.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      attempt · max_attempts</text>
+<text x="532.0" y="302.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      next_retry_at</text>
+<text x="532.0" y="319.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      leased_until · worker_id · locked_at</text>
+<text x="532.0" y="337.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      trace_id · version</text>
+<text x="532.0" y="354.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      created_at · updated_at · completed_at</text>
+<text x="532.0" y="389.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  (status, created_at DESC)</text>
+<text x="532.0" y="407.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  (priority, status, created_at DESC)</text>
+<text x="532.0" y="424.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  next_retry_at  WHERE NOT NULL</text>
+<text x="72.0" y="144.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">job_outbox</text>
+<text x="72.0" y="179.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">PK  id</text>
+<text x="72.0" y="197.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">FK  job_id → jobs.id</text>
+<text x="72.0" y="214.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      topic · message_key (= idempotency key)</text>
+<text x="72.0" y="232.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      payload_json · headers_json</text>
+<text x="72.0" y="249.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      status: PENDING | PUBLISHING |</text>
+<text x="72.0" y="267.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">                  PUBLISHED | FAILED</text>
+<text x="72.0" y="284.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      attempts · not_before</text>
+<text x="72.0" y="302.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      created_at · updated_at · published_at</text>
+<text x="72.0" y="319.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      last_error</text>
+<text x="72.0" y="354.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  (status, not_before, created_at)</text>
+<text x="72.0" y="372.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">       WHERE status = &#x27;PENDING&#x27;</text>
+<text x="72.0" y="389.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  job_id</text>
+<text x="992.0" y="144.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">job_attempts</text>
+<text x="992.0" y="179.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">PK  id</text>
+<text x="992.0" y="197.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">FK  job_id → jobs.id</text>
+<text x="992.0" y="214.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">UQ  (job_id, attempt)</text>
+<text x="992.0" y="232.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      status · topic</text>
+<text x="992.0" y="249.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      error_message · failure_class</text>
+<text x="992.0" y="267.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      started_at · finished_at</text>
+<text x="992.0" y="302.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  (job_id, attempt DESC)</text>
+<text x="992.0" y="384.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">side_effect_receipts</text>
+<text x="992.0" y="419.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">PK  id</text>
+<text x="992.0" y="437.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">UQ  effect_key  (TYPE:idempotencyKey)</text>
+<text x="992.0" y="454.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">FK  job_id → jobs.id</text>
+<text x="992.0" y="472.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      job_type · payload_hash</text>
+<text x="992.0" y="489.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">      created_at</text>
+<text x="992.0" y="524.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">IX  job_id</text>
+<text x="458.9" y="156.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">many : 1</text>
+<text x="918.9" y="151.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">many : 1</text>
+<text x="918.9" y="387.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">many : 1</text>
+<text x="72.0" y="624.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Who writes what</text>
+<text x="72.0" y="642.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• API (create): jobs row + first job_outbox row in one transaction. Replay: jobs back to QUEUED + new outbox row.</text>
+<text x="72.0" y="659.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• Outbox publisher: claims job_outbox rows (FOR UPDATE SKIP LOCKED) → PUBLISHING, then PUBLISHED or FAILED.</text>
+<text x="72.0" y="677.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• Worker: jobs → PROCESSING (leased_until = start + 6 min) + job_attempts row; then one fenced transaction:</text>
+<text x="72.0" y="694.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">   final jobs state + attempt outcome + retry or DLQ outbox row (WHERE status = &#x27;PROCESSING&#x27; AND attempt = :attempt).</text>
+<text x="72.0" y="712.4" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• JobExecutor: side_effect_receipts row; the unique effect_key stops a duplicate business effect on redelivery.</text>
+<text x="72.0" y="729.9" font-size="14" fill="#1e1e1e" text-anchor="start" xml:space="preserve">• Lease recovery: same fenced transaction as a worker failure, for jobs still PROCESSING after leased_until.</text>
+</svg>

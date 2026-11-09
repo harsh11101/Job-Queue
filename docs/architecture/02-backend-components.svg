@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1778 1008" width="1778" height="1008" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
+</defs>
+<rect x="16" y="-4" width="1778" height="1008" fill="#ffffff"/>
+<rect x="80.0" y="140.0" width="260.0" height="100.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="380.0" y="140.0" width="260.0" height="100.0" rx="8" fill="#ffa8a8" stroke="#c92a2a" stroke-width="2"/>
+<rect x="680.0" y="140.0" width="260.0" height="100.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1060.0" y="140.0" width="240.0" height="100.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="80.0" y="330.0" width="260.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="680.0" y="330.0" width="260.0" height="110.0" rx="8" fill="#ffa8a8" stroke="#c92a2a" stroke-width="3"/>
+<rect x="1060.0" y="330.0" width="240.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="440.0" y="530.0" width="200.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="700.0" y="530.0" width="200.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="930.0" y="530.0" width="220.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1380.0" y="530.0" width="180.0" height="90.0" rx="8" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<rect x="80.0" y="720.0" width="1220.0" height="100.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="540.0" y="900.0" width="300.0" height="80.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="1340.0" y="700.0" width="430.0" height="170.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="210.0,240.0 210.0,330.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="210.0,440.0 210.0,720.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="810.0,240.0 810.0,330.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="510.0,240.0 510.0,357.5 680.0,357.5" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="380.0,190.0 360.0,190.0 360.0,720.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1060.0,190.0 940.0,190.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1180.0,330.0 1180.0,240.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1180.0,440.0 1180.0,720.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="732.0,440.0 732.0,485.0 540.0,485.0 540.0,530.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="800.0,440.0 800.0,530.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="901.0,440.0 901.0,485.0 1040.0,485.0 1040.0,530.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1150.0,575.0 1380.0,575.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="800.0,620.0 800.0,720.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="680.0,418.0 660.0,418.0 660.0,720.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="690.0,820.0 690.0,900.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Backend — component design (low level)</text>
+<text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">Spring beans and who calls whom. Arrows are calls or data flow; all code is blocking and runs on virtual threads.</text>
+<text x="210.0" y="176.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobController</text>
+<text x="210.0" y="194.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ ApiExceptionHandler</text>
+<text x="210.0" y="211.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">errors → {code, message, timestamp}</text>
+<text x="510.0" y="176.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ExpiredLeaseRecovery</text>
+<text x="510.0" y="194.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">@Scheduled every 30 s</text>
+<text x="510.0" y="211.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">≤ 100 jobs per run</text>
+<text x="810.0" y="176.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">KafkaJobListener</text>
+<text x="810.0" y="194.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">high · low · retry containers</text>
+<text x="810.0" y="211.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack after commit, nack 5 s on error</text>
+<text x="1180.0" y="176.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Kafka</text>
+<text x="1180.0" y="194.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs-high · jobs-low</text>
+<text x="1180.0" y="211.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">retry-5s / 30s / 2m · dlq</text>
+<text x="210.0" y="371.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobCommandService</text>
+<text x="210.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">create (idempotent) · replay</text>
+<text x="210.0" y="406.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">get · list · attempts · stats</text>
+<text x="810.0" y="371.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobWorkerService</text>
+<text x="810.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">process(message, topic)</text>
+<text x="810.0" y="406.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">recoverExpiredLease(job)</text>
+<text x="1180.0" y="371.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">OutboxPublisher</text>
+<text x="1180.0" y="389.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">@Scheduled every 1 s</text>
+<text x="1180.0" y="406.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">≤ 8 sends in flight</text>
+<text x="540.0" y="561.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">RetryPolicy</text>
+<text x="540.0" y="579.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">5 s → 30 s → 2 min</text>
+<text x="540.0" y="596.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">then DLQ</text>
+<text x="800.0" y="561.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobExecutor</text>
+<text x="800.0" y="579.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">runs the job, inserts</text>
+<text x="800.0" y="596.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">side-effect receipt</text>
+<text x="1040.0" y="561.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">DistributedLockService</text>
+<text x="1040.0" y="579.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SET NX + TTL</text>
+<text x="1040.0" y="596.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Lua compare-and-delete</text>
+<text x="1470.0" y="579.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Redis</text>
+<text x="690.0" y="765.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobStore — JdbcClient, joins the caller&#x27;s TransactionTemplate transaction</text>
+<text x="690.0" y="782.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobs · outbox claim (FOR UPDATE SKIP LOCKED) · attempts · receipts · fenced end-of-attempt updates · findExpiredLeases</text>
+<text x="690.0" y="934.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">PostgreSQL 18</text>
+<text x="690.0" y="954.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(Flyway V1 schema)</text>
+<text x="1352.0" y="723.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Supporting packages</text>
+<text x="1352.0" y="738.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">config/  JobQueueProperties (validated: lock-ttl ≥ processing-timeout)</text>
+<text x="1352.0" y="753.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">            KafkaConfiguration (topics, virtual-thread listener executors)</text>
+<text x="1352.0" y="768.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">            WebConfiguration (CORS)</text>
+<text x="1352.0" y="783.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">domain/  JobStatus · JobPriority · RetryDecision · OutboxStatus</text>
+<text x="1352.0" y="798.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">messaging/  JobQueueMessage · DlqMessage</text>
+<text x="1352.0" y="813.0" font-size="12" fill="#1e1e1e" text-anchor="start" xml:space="preserve">util/  JsonSupport (Jackson 3) · HashSupport · ClockProvider</text>
+<text x="218.0" y="277.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">calls</text>
+<text x="218.0" y="612.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">one tx: job +</text>
+<text x="218.0" y="628.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">first outbox row;</text>
+<text x="218.0" y="644.5" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">replay; queries</text>
+<text x="818.0" y="284.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">process(payload, topic)</text>
+<text x="518.0" y="274.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">recoverExpiredLease(job)</text>
+<text x="366.0" y="662.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">findExpiredLeases</text>
+<text x="972.5" y="181.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">consume</text>
+<text x="1188.0" y="280.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">send(topic, key, json)</text>
+<text x="1188.0" y="648.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">claim rows, mark</text>
+<text x="1188.0" y="664.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">PUBLISHED / FAILED</text>
+<text x="560.0" y="474.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">decide</text>
+<text x="808.0" y="507.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">execute</text>
+<text x="960.0" y="474.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">withLock</text>
+<text x="1215.7" y="566.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">lease per job</text>
+<text x="808.0" y="672.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">insert receipt</text>
+<text x="500.0" y="648.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">fenced state updates,</text>
+<text x="500.0" y="664.2" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">attempts, outbox rows</text>
+<text x="698.0" y="862.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">SQL</text>
+</svg>

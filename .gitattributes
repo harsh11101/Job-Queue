@@ -1,0 +1,5 @@
+graphify-out/graph.json merge=graphify
+# Keep the Gradle wrapper runnable on every OS regardless of core.autocrlf.
+gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary

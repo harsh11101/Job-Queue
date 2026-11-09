@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1508 848" width="1508" height="848" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
+</defs>
+<rect x="16" y="-4" width="1508" height="848" fill="#ffffff"/>
+<rect x="40.0" y="480.0" width="1460.0" height="340.0" rx="0" fill="none" stroke="#7048e8" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="40.0" y="110.0" width="1460.0" height="330.0" rx="0" fill="none" stroke="#1971c2" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="70.0" y="170.0" width="220.0" height="90.0" rx="8" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="330.0" y="170.0" width="220.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="590.0" y="170.0" width="270.0" height="90.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="900.0" y="170.0" width="200.0" height="90.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1180.0" y="170.0" width="260.0" height="90.0" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="330.0" y="320.0" width="220.0" height="80.0" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<rect x="590.0" y="320.0" width="270.0" height="80.0" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<rect x="900.0" y="320.0" width="200.0" height="80.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1180.0" y="320.0" width="260.0" height="80.0" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<polyline points="290.0,215.0 330.0,215.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="550.0,215.0 590.0,215.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="860.0,215.0 900.0,215.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1100.0,215.0 1180.0,215.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1000.0,260.0 1000.0,320.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1100.0,360.0 1180.0,360.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="900.0,360.0 860.0,360.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="440.0,260.0 440.0,320.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<rect x="70.0" y="540.0" width="220.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="330.0" y="540.0" width="220.0" height="110.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="590.0" y="540.0" width="270.0" height="110.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="900.0" y="540.0" width="200.0" height="110.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1180.0" y="540.0" width="260.0" height="110.0" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="900.0" y="710.0" width="200.0" height="90.0" rx="8" fill="#fff9db" stroke="#e67700" stroke-width="2"/>
+<rect x="1180.0" y="710.0" width="260.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="290.0,595.0 330.0,595.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="550.0,595.0 590.0,595.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="860.0,595.0 900.0,595.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1100.0,595.0 1180.0,595.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1000.0,650.0 1000.0,710.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="900.0,755.0 440.0,755.0 440.0,650.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Create and publish — request path and transactional outbox (low level)</text>
+<text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">The HTTP request only commits to PostgreSQL. Kafka is reached later by the outbox publisher.</text>
+<text x="54.0" y="134.7" font-size="16" fill="#1971c2" text-anchor="start" xml:space="preserve">Create job — HTTP request on a virtual thread</text>
+<text x="180.0" y="219.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">POST /api/v1/jobs</text>
+<text x="440.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Validate body</text>
+<text x="440.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">normalize key + type</text>
+<text x="440.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SHA-256 request hash</text>
+<text x="725.0" y="202.6" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">One transaction:</text>
+<text x="725.0" y="218.8" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">INSERT job ON CONFLICT DO NOTHING</text>
+<text x="725.0" y="235.1" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ outbox row if inserted</text>
+<text x="1000.0" y="209.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Key already</text>
+<text x="1000.0" y="229.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">existed?</text>
+<text x="1310.0" y="209.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">201 Created</text>
+<text x="1310.0" y="229.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ Location header</text>
+<text x="440.0" y="364.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">400 BAD_REQUEST</text>
+<text x="725.0" y="364.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">409 IDEMPOTENCY_CONFLICT</text>
+<text x="1000.0" y="354.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Same request</text>
+<text x="1000.0" y="374.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">hash?</text>
+<text x="1310.0" y="354.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">200 OK</text>
+<text x="1310.0" y="374.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">existing job</text>
+<text x="1130.7" y="206.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="1008.0" y="294.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1127.1" y="351.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="870.7" y="351.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="448.0" y="294.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">invalid</text>
+<text x="54.0" y="504.7" font-size="16" fill="#7048e8" text-anchor="start" xml:space="preserve">Outbox publisher — @Scheduled every 1 s on every replica</text>
+<text x="180.0" y="581.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Tick</text>
+<text x="180.0" y="599.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">fixed delay 1 s,</text>
+<text x="180.0" y="616.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ticks never overlap</text>
+<text x="440.0" y="566.3" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Claim ≤ 100 rows:</text>
+<text x="440.0" y="582.6" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">PENDING / FAILED and due,</text>
+<text x="440.0" y="598.8" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">or PUBLISHING &gt; 5 min</text>
+<text x="440.0" y="615.1" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">FOR UPDATE SKIP LOCKED</text>
+<text x="440.0" y="631.3" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">→ PUBLISHING</text>
+<text x="725.0" y="581.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Send each row on its own</text>
+<text x="725.0" y="599.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">virtual thread (≤ 8 in flight)</text>
+<text x="725.0" y="616.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">key = idempotency key, acks=all</text>
+<text x="1000.0" y="589.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Broker</text>
+<text x="1000.0" y="609.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">confirmed?</text>
+<text x="1310.0" y="589.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">PUBLISHED</text>
+<text x="1310.0" y="609.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">published_at set</text>
+<text x="1000.0" y="759.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">FAILED + last_error</text>
+<text x="1310.0" y="743.5" font-size="12" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Instance died mid-batch? Rows stay</text>
+<text x="1310.0" y="758.5" font-size="12" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">PUBLISHING and are reclaimed after</text>
+<text x="1310.0" y="773.5" font-size="12" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">5 min (consumers are idempotent)</text>
+<text x="1127.1" y="586.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1008.0" y="684.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="560.0" y="772.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">claimed again next tick (no attempt limit)</text>
+</svg>

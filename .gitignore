@@ -1,0 +1,14 @@
+.gradle/
+build/
+out/
+.idea/
+*.iml
+.env
+.DS_Store
+*.log
+*.hprof
+!.github/
+
+graphify-out/
+build-test.log
+

@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 -4 1628 1168" width="1628" height="1168" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ah0" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,5 L0,10 z" fill="#495057"/></marker>
+</defs>
+<rect x="16" y="-4" width="1628" height="1168" fill="#ffffff"/>
+<rect x="40.0" y="810.0" width="1580.0" height="330.0" rx="0" fill="none" stroke="#c92a2a" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="40.0" y="110.0" width="1580.0" height="660.0" rx="0" fill="none" stroke="#7048e8" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="590.0" y="170.0" width="220.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<rect x="850.0" y="170.0" width="220.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<rect x="1110.0" y="170.0" width="220.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<rect x="70.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<rect x="330.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<rect x="590.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="850.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1110.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1370.0" y="330.0" width="220.0" height="90.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="1370.0" y="500.0" width="220.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1110.0" y="500.0" width="220.0" height="90.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="850.0" y="500.0" width="220.0" height="90.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="590.0" y="500.0" width="220.0" height="90.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="1110.0" y="650.0" width="220.0" height="90.0" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="850.0" y="650.0" width="220.0" height="90.0" rx="8" fill="#ffe8cc" stroke="#e8590c" stroke-width="2"/>
+<rect x="70.0" y="500.0" width="480.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="70.0" y="650.0" width="480.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="290.0,375.0 330.0,375.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="550.0,375.0 590.0,375.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="810.0,375.0 850.0,375.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="700.0,330.0 700.0,260.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1070.0,375.0 1110.0,375.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="960.0,330.0 960.0,260.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1330.0,375.0 1370.0,375.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1220.0,330.0 1220.0,260.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1480.0,420.0 1480.0,500.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1370.0,545.0 1330.0,545.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1110.0,545.0 1070.0,545.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="850.0,545.0 810.0,545.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1220.0,590.0 1220.0,650.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="700.0,590.0 700.0,695.0 850.0,695.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1110.0,695.0 1070.0,695.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<rect x="70.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#ffa8a8" stroke="#c92a2a" stroke-width="2"/>
+<rect x="330.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<rect x="590.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="850.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+<rect x="1110.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1370.0" y="870.0" width="220.0" height="110.0" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="1110.0" y="1030.0" width="220.0" height="90.0" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<polyline points="290.0,925.0 330.0,925.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="550.0,925.0 590.0,925.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="810.0,925.0 850.0,925.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1070.0,925.0 1110.0,925.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1330.0,925.0 1370.0,925.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<polyline points="1220.0,980.0 1220.0,1030.0" fill="none" stroke-linejoin="round" stroke="#495057" stroke-width="2" marker-end="url(#ah0)"/>
+<text x="40.0" y="45.8" font-size="28" fill="#1e1e1e" text-anchor="start" xml:space="preserve">Worker and lease recovery — processing one message (low level)</text>
+<text x="40.0" y="76.7" font-size="16" fill="#495057" text-anchor="start" xml:space="preserve">Kafka delivers at least once. Leases, the terminal-state check, fenced updates and receipts make that safe.</text>
+<text x="54.0" y="134.7" font-size="16" fill="#7048e8" text-anchor="start" xml:space="preserve">Kafka worker — KafkaJobListener → JobWorkerService, one virtual thread per consumer</text>
+<text x="700.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack, skip</text>
+<text x="700.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(another worker</text>
+<text x="700.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">holds the lease)</text>
+<text x="960.0" y="210.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">insert outbox row for</text>
+<text x="960.0" y="227.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">later (not_before), ack</text>
+<text x="1220.0" y="201.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ack, skip</text>
+<text x="1220.0" y="219.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(job already</text>
+<text x="1220.0" y="236.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SUCCEEDED / DLQ)</text>
+<text x="180.0" y="370.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Message</text>
+<text x="180.0" y="387.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">jobId · attempt · notBefore</text>
+<text x="440.0" y="370.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Acquire lease</text>
+<text x="440.0" y="387.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Redis SET NX, TTL 6 min</text>
+<text x="700.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Lease</text>
+<text x="700.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">acquired?</text>
+<text x="960.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">notBefore in</text>
+<text x="960.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">the future?</text>
+<text x="1220.0" y="369.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Job already</text>
+<text x="1220.0" y="389.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">finished?</text>
+<text x="1480.0" y="361.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">markProcessing</text>
+<text x="1480.0" y="379.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">leased_until = start + 6 min</text>
+<text x="1480.0" y="396.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ attempt row</text>
+<text x="1480.0" y="531.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">JobExecutor</text>
+<text x="1480.0" y="549.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">runs the job, inserts</text>
+<text x="1480.0" y="566.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">side-effect receipt</text>
+<text x="1220.0" y="539.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Execution</text>
+<text x="1220.0" y="559.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">threw?</text>
+<text x="960.0" y="531.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">RetryPolicy</text>
+<text x="960.0" y="549.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">retry topic + delay,</text>
+<text x="960.0" y="566.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">or DLQ</text>
+<text x="700.0" y="532.6" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Fenced tx: RETRY_SCHEDULED</text>
+<text x="700.0" y="548.8" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ retry outbox row,</text>
+<text x="700.0" y="565.1" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">or DLQ + DLQ outbox row</text>
+<text x="1220.0" y="690.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Fenced tx: SUCCEEDED</text>
+<text x="1220.0" y="707.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ finish attempt</text>
+<text x="960.0" y="681.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Release lease (Lua</text>
+<text x="960.0" y="699.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">compare-and-delete),</text>
+<text x="960.0" y="716.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">then ack</text>
+<text x="310.0" y="540.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Fenced update matched 0 rows? The attempt was already ended</text>
+<text x="310.0" y="557.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">by lease recovery: result discarded (lease.lost metric), ack.</text>
+<text x="310.0" y="690.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Exception before the final commit → nack(5 s):</text>
+<text x="310.0" y="707.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Kafka redelivers; the receipt prevents a second effect.</text>
+<text x="817.1" y="366.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="708.0" y="299.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="1080.7" y="366.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="968.0" y="299.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1340.7" y="366.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="1228.0" y="299.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1077.1" y="536.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1228.0" y="624.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="54.0" y="834.7" font-size="16" fill="#c92a2a" text-anchor="start" xml:space="preserve">Lease recovery — ExpiredLeaseRecovery, @Scheduled every 30 s on every replica</text>
+<text x="180.0" y="911.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Tick</text>
+<text x="180.0" y="929.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">every 30 s</text>
+<text x="180.0" y="946.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(lease-recovery-delay-ms)</text>
+<text x="440.0" y="902.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">SELECT jobs WHERE</text>
+<text x="440.0" y="920.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">status = PROCESSING</text>
+<text x="440.0" y="937.9" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">AND leased_until &lt; now</text>
+<text x="440.0" y="955.4" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">LIMIT 100</text>
+<text x="700.0" y="904.5" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">recoverExpiredLease(job)</text>
+<text x="700.0" y="920.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">as a retryable failure:</text>
+<text x="700.0" y="937.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">&quot;Worker lease expired</text>
+<text x="700.0" y="953.2" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">before the attempt finished&quot;</text>
+<text x="960.0" y="911.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">RetryPolicy</text>
+<text x="960.0" y="929.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">(same path as a</text>
+<text x="960.0" y="946.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">worker failure)</text>
+<text x="1220.0" y="919.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">Fenced update</text>
+<text x="1220.0" y="939.7" font-size="16" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">matched?</text>
+<text x="1480.0" y="911.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">RETRY_SCHEDULED or DLQ</text>
+<text x="1480.0" y="929.1" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ outbox row</text>
+<text x="1480.0" y="946.6" font-size="14" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">+ lease.recovered metric</text>
+<text x="1220.0" y="1070.7" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">nothing to do: the worker</text>
+<text x="1220.0" y="1087.0" font-size="13" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">ended the attempt first</text>
+<text x="1337.1" y="916.7" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">yes</text>
+<text x="1228.0" y="1009.0" font-size="13" fill="#343a40" text-anchor="start" xml:space="preserve">no</text>
+<text x="70.0" y="1047.0" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">Why recovery is needed: a dead worker&#x27;s message is redelivered within seconds, while its 6-minute lease is still held,</text>
+<text x="70.0" y="1063.2" font-size="13" fill="#495057" text-anchor="start" xml:space="preserve">so the redelivery is skipped (s1). Recovery moves the job on once the lease has expired: at most about 6.5 minutes.</text>
+</svg>
