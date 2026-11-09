@@ -1,0 +1,53 @@
+name: Demo image
+
+# Publishes ghcr.io/<owner>/job-queue-demo: the service with the dashboard bundled in.
+# Runs after CI passes on main, or by hand (Actions → Demo image → Run workflow), for example
+# after a dashboard change, since pushes to the dashboard repo do not trigger this.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: demo-image
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ghcr.io/${{ github.repository_owner }}/job-queue-demo
+    steps:
+      - name: Checkout service
+        uses: actions/checkout@v5
+        with:
+          # The commit CI just tested, not whatever main points at now.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Checkout dashboard
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/Job-Queue-Dashboard
+          path: dashboard
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: Set up multi-platform builds
+        # QEMU runs the arm64 runtime stage; the build stages run natively (see Dockerfile.demo).
+        run: |
+          docker run --privileged --rm tonistiigi/binfmt --install arm64
+          docker buildx create --use --name multi
+      - name: Build and push
+        run: |
+          sha=$(git rev-parse --short HEAD)
+          docker buildx build -f Dockerfile.demo \
+            --platform linux/amd64,linux/arm64 \
+            --build-context dashboard=dashboard \
+            --tag "$IMAGE:latest" --tag "$IMAGE:sha-$sha" \
+            --push .
+          echo "Published $IMAGE:latest and $IMAGE:sha-$sha" >> "$GITHUB_STEP_SUMMARY"

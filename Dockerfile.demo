@@ -1,0 +1,50 @@
+# syntax=docker/dockerfile:1
+#
+# Demo image: the service with the dashboard bundled in, both served on port 8080.
+# PostgreSQL, Kafka and Redis run in their own containers (docker-compose.demo.yml).
+#
+# The dashboard source comes in as a named build context called "dashboard":
+#   docker buildx build -f Dockerfile.demo -t job-queue-demo \
+#     --build-context dashboard=https://github.com/harsh11101/Job-Queue-Dashboard.git#main .
+# or, from a local checkout next to this repo:
+#     --build-context dashboard=../job-queue-dashboard
+#
+# The two build stages run on the build machine's own platform. Their output (static files and
+# a jar) is the same for every target platform, so a multi-platform build never compiles under
+# emulation; only the small runtime stage is built per platform.
+
+FROM --platform=$BUILDPLATFORM node:22-alpine AS dashboard-build
+WORKDIR /dashboard
+COPY --from=dashboard package.json package-lock.json ./
+RUN npm ci
+# Only the files the build needs: never node_modules or a local .env.local from a checkout.
+COPY --from=dashboard index.html vite.config.ts tsconfig.json tsconfig.app.json tsconfig.node.json components.json ./
+COPY --from=dashboard public ./public
+COPY --from=dashboard src ./src
+# An empty API base URL makes the dashboard call the address it is served from.
+RUN VITE_API_BASE_URL= npm run build
+
+FROM --platform=$BUILDPLATFORM eclipse-temurin:25-jdk-alpine AS service-build
+ARG GRADLE_VERSION=9.5.1
+WORKDIR /workspace
+RUN apk add --no-cache curl unzip \
+    && curl -fsSLo /tmp/gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+    && unzip -q /tmp/gradle.zip -d /opt \
+    && ln -s "/opt/gradle-${GRADLE_VERSION}/bin/gradle" /usr/local/bin/gradle \
+    && rm /tmp/gradle.zip
+COPY build.gradle settings.gradle gradle.properties ./
+COPY src ./src
+# Spring Boot serves classpath:/static; WebConfiguration routes dashboard pages to index.html.
+COPY --from=dashboard-build /dashboard/dist ./src/main/resources/static
+RUN gradle --no-daemon clean bootJar
+
+FROM eclipse-temurin:25-jre-alpine
+LABEL org.opencontainers.image.source="https://github.com/harsh11101/Job-Queue" \
+      org.opencontainers.image.description="Distributed priority job queue with its dashboard, for demos" \
+      org.opencontainers.image.licenses="MIT"
+WORKDIR /app
+RUN addgroup -S app && adduser -S app -G app
+COPY --from=service-build /workspace/build/libs/*.jar /app/app.jar
+USER app
+EXPOSE 8080
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-XX:+UseZGC", "-jar", "/app/app.jar"]

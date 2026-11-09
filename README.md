@@ -48,6 +48,32 @@ Each `.svg` has an editable `.excalidraw` source next to it. To change a diagram
 
 More detail is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Operations are covered in [docs/RUNBOOK.md](docs/RUNBOOK.md).
 
+## Try the demo (Docker only)
+
+The demo image `ghcr.io/harsh11101/job-queue-demo` contains the service with the [dashboard](https://github.com/harsh11101/Job-Queue-Dashboard) built in, both on one port. Nothing else to install besides Docker (allow it about 4 GB of memory). It runs on Intel/AMD and ARM (Apple Silicon) machines.
+
+```bash
+curl -O https://raw.githubusercontent.com/harsh11101/Job-Queue/main/docker-compose.demo.yml
+docker compose -f docker-compose.demo.yml up -d
+```
+
+Open <http://localhost:8080> once the app is up (about a minute on first start while Kafka and the database initialize). The API is on the same address, e.g. `curl http://localhost:8080/api/v1/jobs/stats`. Only port 8080 is published; set `DEMO_PORT=9000` to use another one.
+
+```bash
+docker compose -f docker-compose.demo.yml down      # stop, keep the data
+docker compose -f docker-compose.demo.yml down -v   # stop and delete the data
+```
+
+The image is published by [`.github/workflows/demo-image.yml`](.github/workflows/demo-image.yml) after CI passes on `main`, tagged `latest` and `sha-<commit>`. To build it yourself:
+
+```bash
+docker buildx build -f Dockerfile.demo -t job-queue-demo --load \
+  --build-context dashboard=https://github.com/harsh11101/Job-Queue-Dashboard.git#main .
+DEMO_IMAGE=job-queue-demo docker compose -f docker-compose.demo.yml up -d
+```
+
+Use `--build-context dashboard=../job-queue-dashboard` to build from a local dashboard checkout instead.
+
 ## Local setup
 
 ### Prerequisites
@@ -309,5 +335,9 @@ src/main/resources/db/migration/   Flyway schema
 docs/                              architecture notes and runbook
 docs/architecture/                 design diagrams (.excalidraw sources + exported .svg)
 monitoring/                        Prometheus scrape config, Grafana provisioning and dashboard
+Dockerfile                         service image
+Dockerfile.demo                    demo image: service with the dashboard built in
+docker-compose.yml                 local infrastructure, plus `app` and `monitoring` profiles
+docker-compose.demo.yml            one-command demo using the published demo image
 postman/                           Postman collection
 ```
